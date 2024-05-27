@@ -1,0 +1,79 @@
+/* sign up  */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.form div {
+  margin: 15px;
+  width: 100%;
+  position: relative;
+}
+
+.field {
+  width: 100%;
+  border-radius: 14px;
+  border: 2px solid rgb(131, 103, 103);
+  box-sizing: border-box;
+}
+
+.input-container {
+  position: relative;
+}
+
+.input-container input[type="text"],
+.input-container input[type="email"],
+.input-container input[type="password"] {
+  width: 100%;
+  padding: 15px 31px 11px 40px; 
+}
+
+.left-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.right-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.form-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-btn button {
+  padding: 10px;
+  color: white;
+  background-color: rgb(52, 52, 238);
+  border: none;
+  width: 100%;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.form-btn button:hover {
+  background-color: rgb(69, 69, 245);
+}
+
+#text {
+  margin-top: 20px;
+}

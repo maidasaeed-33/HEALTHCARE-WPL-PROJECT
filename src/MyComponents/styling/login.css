@@ -1,0 +1,99 @@
+/* login  */
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.75);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.container {
+  height: 350px;
+  width: 300px;
+  background-color: white;
+  box-shadow: 1px 1px 1px rgba(67, 63, 63, 0.479);
+  padding: 3rem;
+  border-radius: 30px;
+  position: relative;
+}
+
+.login img {
+  margin: 0 auto;
+  width: 60px;
+  height: 60px;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.login div {
+  margin: 15px;
+  width: 100%;
+  position: relative;
+}
+
+.login .field {
+  width: 100%;
+  border-radius: 14px;
+  border: 2px solid rgb(131, 103, 103);
+  box-sizing: border-box;
+}
+
+.login input[type="text"],
+.login input[type="password"] {
+  width: 100%;
+  padding: 15px 31px 11px 40px; 
+}
+
+
+.login-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.login-btn button{
+  padding: 10px;
+  color: white;
+  background-color: rgb(52, 52, 238);
+  border: none;
+  width: 100%;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.login-btn button:hover{
+  background-color: rgb(69, 69, 245);
+}
+
+.left-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+
+}
+
+.right-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+#text{
+  margin-top: 20px;
+}
