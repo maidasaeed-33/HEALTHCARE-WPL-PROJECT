@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import NavBar from './Navbar'; // Ensure the path is correct
-import Login from './Login'; // Ensure the path is correct
-import './style.css'; // Ensure the path is correct
+import NavBar from './Navbar';
+import Login from './Login';
+import './style.css';
 
 const MainHome = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);

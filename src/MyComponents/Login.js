@@ -24,12 +24,12 @@ const Login = ({ onClose }) => {
           <img src={icon} alt="Icon" />
           <form onSubmit={handleSubmit}>
             <div>
-              <input type="text" placeholder="Username" required className='field'/>
-              <FaUser className='icon'/>
+              <input type="text" placeholder="Username" required className='field' />
+              <FaUser className='icon' />
             </div>
             <div>
               <input type="password" placeholder="Password" required className='field' />
-              <FaLock className='icon'/>
+              <FaLock className='icon' />
             </div>
             <div className='checkbox'>
               <input type="checkbox" name="remember" id="remember" />
