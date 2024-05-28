@@ -4,12 +4,12 @@ import icon from './Assets/permission.png';
 import './styling/login.css';
 import { FaUser, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 
-const Login = ({ isOpen, onClose }) => {
+const Login = ({ isOpen, onClose, onSignUpClick }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Handle form submission logic here
+    // Handle form submission logic here --- backend
     onClose(); // Close the modal after login
   };
 
@@ -53,7 +53,7 @@ const Login = ({ isOpen, onClose }) => {
             <div className="login-btn">
               <button type="submit">Login</button>
             </div>
-            <div id="text">Don't have an Account? <a href="#">Sign Up</a></div>
+            <div id="text">Don't have an Account? <a href="#" onClick={onSignUpClick}>Sign Up</a></div>
           </form>
         </div>
       </div>

@@ -1,70 +1,84 @@
-/* sign up  */
+/* signup.css */
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.75);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.container {
+  min-height: 400px; /* Set a minimum height */
+  width: 370px; /* Increased width for better spacing */
+  background-color: white;
+  box-shadow: 1px 1px 1px rgba(67, 63, 63, 0.479);
+  padding: 3rem 2rem; /* Adjusted padding */
+  border-radius: 30px;
+  position: relative;
+}
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  justify-content: center;
   align-items: center;
-  margin: 10px;
 }
 
-.form div {
-  margin: 15px;
+.input-container {
   width: 100%;
   position: relative;
+  margin-bottom: 1.5rem; /* Increased margin for spacing */
 }
 
 .field {
   width: 100%;
+  padding: 15px 40px;
   border-radius: 14px;
   border: 2px solid rgb(131, 103, 103);
   box-sizing: border-box;
 }
 
-.input-container {
-  position: relative;
-}
-
-.input-container input[type="text"],
-.input-container input[type="email"],
-.input-container input[type="password"] {
-  width: 100%;
-  padding: 15px 31px 11px 40px; 
+.left-icon, .right-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .left-icon {
-  position: absolute;
   left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 .right-icon {
-  position: absolute;
   right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
   cursor: pointer;
 }
 
 .checkbox {
+  width: 100%;
   display: flex;
   align-items: center;
+  margin-bottom: 1.5rem; /* Increased margin for spacing */
+}
+
+.checkbox input {
+  margin-right: 0.5rem; /* Adjusted spacing between checkbox and label */
 }
 
 .form-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  margin-bottom: 1.5rem; /* Increased margin for spacing */
 }
 
 .form-btn button {
+  width: 100%;
   padding: 10px;
   color: white;
   background-color: rgb(52, 52, 238);
   border: none;
-  width: 100%;
   font-size: 15px;
   cursor: pointer;
   font-weight: bold;
@@ -75,5 +89,15 @@
 }
 
 #text {
-  margin-top: 20px;
+  margin-top: 1.5rem; /* Increased margin for spacing */
+  text-align: center;
+}
+
+#text a {
+  color: rgb(52, 52, 238);
+  text-decoration: none;
+}
+
+#text a:hover {
+  text-decoration: underline;
 }
