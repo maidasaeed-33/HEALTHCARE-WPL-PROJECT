@@ -5,10 +5,12 @@ import MainHome from './MyComponents/Mainhome';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<MainHome />} />
-      <Route path="/about" element={<About />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<MainHome />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </>
   );
 }
 

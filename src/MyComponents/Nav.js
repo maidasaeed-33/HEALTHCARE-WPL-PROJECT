@@ -1,9 +1,11 @@
+
+
 import React, { useState } from 'react';
 import NavBar from './Navbar';
 import Login from './Login';
-import SignUp from './Signup';
+import SignUp from './Signup'; 
 
-const MainHome = () => {
+const Nav = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
 
@@ -23,12 +25,9 @@ const MainHome = () => {
   return (
     <div className="main-home">
       <NavBar onLoginClick={handleLoginClick} onSignUpClick={handleSignUpClick} />
-      <h1>Welcome to Our Service</h1>
-      <p>This is the main content of the home page.</p>
       {showLoginModal && <Login isOpen={showLoginModal} onClose={handleModalClose} onSignUpClick={handleSignUpClick} />}
       {showSignUpModal && <SignUp isOpen={showSignUpModal} onClose={handleModalClose} />}
     </div>
   );
 };
-
-export default MainHome;
+export default Nav;
