@@ -40,7 +40,6 @@
 
 .field {
   width: 100%;
-  /* padding: 15px 40px; */
   border-radius: 14px;
   border: 2px solid rgb(131, 103, 103);
   box-sizing: border-box;
@@ -102,4 +101,21 @@
 
 #text a:hover {
   text-decoration: underline;
+}
+
+.cancel {
+  position: absolute; 
+  top: 15px;
+  right: 10px; 
+  border: none; 
+  background: none;
+  cursor: pointer;
+}
+
+.cross {
+  font-size: 22px;
+  color: #000; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

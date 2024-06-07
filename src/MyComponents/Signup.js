@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import './styling/signup.css';
 import { FaUser, FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+import { RxCross2 } from "react-icons/rx";
 
 const SignUp = ({ isOpen, onClose }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -29,6 +30,9 @@ const SignUp = ({ isOpen, onClose }) => {
       className="modal"
     >
       <div className="container">
+
+            <button className="cancel" onClick={onClose}><RxCross2 className='cross' /></button>
+
         <div className="form">
           <form onSubmit={handleSubmit}>
             <div className="input-container">
@@ -74,6 +78,7 @@ const SignUp = ({ isOpen, onClose }) => {
             <div className="form-btn">
               <button type="submit">Sign Up</button>
             </div>
+            
           </form>
         </div>
       </div>

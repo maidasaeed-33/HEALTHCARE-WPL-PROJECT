@@ -7,7 +7,7 @@ import { FaArrowAltCircleRight } from "react-icons/fa";
 function About() {
   return (
     <>
-      {/* <Nav /> */}
+      <Nav />
       <h1>About Us</h1>
       <div className="about-container">
         <div className="left">
