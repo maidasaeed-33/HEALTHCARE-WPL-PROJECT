@@ -1,0 +1,113 @@
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.75);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+}
+
+.container {
+  min-height: 400px;
+  width: 370px;
+  background-color: white;
+  box-shadow: 1px 1px 1px rgba(67, 63, 63, 0.479);
+  padding: 1.5rem 2rem;
+  border-radius: 20px;
+  position: relative;
+}
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-container {
+  width: 100%;
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.field {
+  width: 100%;
+  padding: 15px 40px;
+  border-radius: 14px;
+  border: 2px solid rgb(131, 103, 103);
+  box-sizing: border-box;
+}
+
+.left-icon,
+.right-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.left-icon {
+  left: 10px;
+}
+
+.right-icon {
+  right: 10px;
+  cursor: pointer;
+}
+
+.checkbox {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.checkbox input {
+  margin-right: 0.5rem;
+}
+
+.form-btn {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.form-btn button {
+  width: 100%;
+  padding: 10px;
+  color: white;
+  background-color: rgb(52, 52, 238);
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.form-btn button:hover {
+  background-color: rgb(69, 69, 245);
+}
+
+#text {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+#text a {
+  color: rgb(52, 52, 238);
+  text-decoration: none;
+}
+
+#text a:hover {
+  text-decoration: underline;
+}
+
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  color: #333;
+  cursor: pointer;
+}

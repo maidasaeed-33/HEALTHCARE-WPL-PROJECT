@@ -1,0 +1,178 @@
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1; /* This makes the main content area take up the available space */
+  padding: 1rem;
+}
+
+.header, .footer {
+  background-color: #6882e9;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.footer {
+  background-color: #3454D1;
+  padding: 2rem 0;
+  text-align: center;
+  color: #fff;
+  font-size: 18px;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin-top: 80px;
+}
+
+.left {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+h1 {
+  text-align: center;
+  font-size: 55px;
+  margin-bottom: 30px;
+  margin-top: 90px;
+
+}
+
+.heading {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.para {
+  font-size: 19px;
+  margin-bottom: 20px;
+  font-family: Helvetica, sans-serif;
+}
+
+.bullet ul {
+  font-family: Helvetica, sans-serif;
+  list-style: none;
+  font-weight: bold;
+  padding-left: 0;
+}
+
+.right {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right img {
+  max-width: 100%;
+  height: auto;
+}
+
+ul li {
+  padding: 5px 0;
+  font-size: 19px;
+  color: rgb(74, 68, 68);
+}
+
+.icon {
+  color: rgb(85, 85, 230);
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .left {
+    order: 1;
+    width: 100%;
+    text-align: center;
+  }
+
+  .right {
+    order: 2;
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .right img {
+    max-width: 80%;
+  }
+
+  .bullet {
+    text-align: left;
+  }
+}
+
+
+/* Existing styles... */
+
+@media (max-width: 768px) {
+
+  .about-container {
+    flex-direction: column;
+    align-items: center; /* Align items horizontally in the center */
+    justify-content: center; /* Align items vertically in the center */
+    text-align: center; /* Center align text */
+  }
+
+  .left {
+    order: 1;
+    width: 100%;
+    text-align: center; 
+    /* padding-right: 58px; */
+  }
+
+  .right {
+    order: 2;
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center; 
+  }
+
+  .right img {
+    max-width: 80%; 
+  }
+ .bullet{
+  text-align: left;
+ }
+}
+
+.footer {
+  background-color: #6882e9;
+  padding: 2rem 0;
+  text-align: center;
+  color: #fff;
+  margin-top: 2rem;
+  font-size: 18px;
+  bottom: 0;
+}

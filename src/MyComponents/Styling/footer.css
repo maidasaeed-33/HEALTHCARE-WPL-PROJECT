@@ -1,0 +1,29 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  flex: 1;
+  height: 100vh; /* Added height: 100vh to ensure #root has a defined height */
+}
+
+.footer {
+  bottom: 0;
+  left: 0;
+  width: 100vw; /* Set the width to 100% of the viewport width */
+  margin-left: -20px; /* Compensate for the padding on the page-container */
+  margin-right: -20px; /* Compensate for the padding on the page-container */
+  padding-left: 20px; /* Add padding to the left side of the footer */
+  padding-right: 20px; /* Add padding to the right side of the footer */
+  background-color: #3454D1;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  z-index: 999;
+}
