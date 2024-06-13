@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import About from './MyComponents/About';
 import MainHome from './MyComponents/Mainhome';
 import Contact from './MyComponents/Contact';
-import MedicineDelivery from './MyComponents/MedicineDelivery';
+import MedicineDelivery from './MyComponents/MedicineDelivery.js'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import DoctorList from './MyComponents/DoctorList.js'
 import AppointmentForm from './MyComponents/AppointmentForm.js'

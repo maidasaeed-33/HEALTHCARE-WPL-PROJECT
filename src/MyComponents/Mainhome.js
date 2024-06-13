@@ -6,7 +6,7 @@ import SignUp from './Signup';
 import './Styling/mainhome.css';
 import medicine from './Assets/medicine.jpg';
 import chatbot from './Assets/chatbot.png';
-
+import Footer from './footer';
 const MainHome = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
@@ -52,9 +52,9 @@ const MainHome = () => {
         <p>Have any questions? Reach out to us anytime.</p>
         <button className="contact-button"><Link style={{ textDecoration: 'none',outline: 'none',color: 'white' }} to="/contact">Contact Us</Link></button>
       </section>
-      <footer className="footer">
-        <p>&copy; 2024 Pak+ Medical Services. All rights reserved.</p>
-      </footer>
+
+    
+      <Footer />
       {showLoginModal && <Login isOpen={showLoginModal} onClose={handleModalClose} onSignUpClick={handleSignUpClick} />}
       {showSignUpModal && <SignUp isOpen={showSignUpModal} onClose={handleModalClose} />}
     </div>

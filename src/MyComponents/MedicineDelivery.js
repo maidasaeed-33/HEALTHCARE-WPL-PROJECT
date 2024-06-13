@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Styling/medicine.css';
 import NavBar from './Navbar';
-import Footer from './Styling/footer.css';
+import Footer from './footer';
 
 
 const medicines = [

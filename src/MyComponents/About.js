@@ -3,6 +3,7 @@ import picture from './Assets/doc.png';
 import './Styling/about.css';
 import Nav from './Nav';
 import { FaArrowAltCircleRight } from "react-icons/fa";
+import Footer from './footer';
 
 function About() {
   return (
@@ -31,9 +32,7 @@ function About() {
             </div>
           </div>
         </main>
-        <footer className="footer">
-          <p>&copy; 2024 Pak+ Medical Services. All rights reserved.</p>
-        </footer>
+      <Footer/>
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from './Navbar';
 import './Styling/contact.css';
+import Footer from './footer';
 
 function Contact() {
   return (
@@ -55,9 +56,8 @@ function Contact() {
           </div>
         </div>
       </div>
-      <footer className="footer">
-        <p>&copy; 2024 Pak+ Medical Services. All rights reserved.</p>
-      </footer>
+      
+      <Footer/>
     </>
   );
 }
