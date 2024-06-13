@@ -181,6 +181,17 @@ select {
   margin-bottom: 20px;
 }
 
+.medicine-image,
+.selected-medicine-image {
+  max-width: 100%;
+  max-height: 200px;
+  height: auto;
+  border-radius: 8px; 
+  object-fit: contain; 
+  margin-bottom: 10px; 
+}
+
+
 /* Styling for smaller screens */
 @media (max-width: 768px) {
   .search-label,

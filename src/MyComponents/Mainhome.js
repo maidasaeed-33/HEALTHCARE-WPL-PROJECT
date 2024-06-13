@@ -15,12 +15,12 @@ const MainHome = () => {
   const handleSignUpClick = () => setShowSignUpModal(true);
   const handleModalClose = () => {
     setShowLoginModal(false);
-    setShowSignUpModal(false);
+
   };
 
   return (
     <div className="main-home">
-      <NavBar onLoginClick={handleLoginClick} onSignUpClick={handleSignUpClick} />
+      <NavBar/>
       <section className="section">
         <div className="content">
           <h1>Making Expert Healthcare For All</h1>
