@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from './Assets/logo.png';
+import logo2 from './Assets/logo2.png';
 import HamburgerMenu from './HamburgerMenu';
 import Login from './Login';
 import SignUp from './Signup';
@@ -41,7 +42,7 @@ const NavBar = () => {
     <nav className={`navbar ${visible ? 'visible' : 'hidden'}`}>
       <div className="navbar-container">
         <NavLink to="/">
-          <img src={logo} alt="Logo" className="logo" />
+          <img src={logo2} alt="Logo" className="logo" />
         </NavLink>
         <HamburgerMenu toggleMenu={toggleMenu} isOpen={isOpen} />
         <ul className={`menu ${isOpen ? 'show' : ''}`}>
