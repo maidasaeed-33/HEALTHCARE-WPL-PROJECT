@@ -5,7 +5,7 @@
 }
 
 .navbar {
-  background-color: rgba(0, 56, 140, 1);
+  background-color: rgba(0, 56, 140, 0.93);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   display: flex;
@@ -52,7 +52,7 @@
   color: #fff;
   font-weight: 500;
   padding: 0.5rem 1rem;
-  border-radius: 5px;
+  /* border-radius: 5px; you set it latter you want */
   transition: all 0.3s ease;
 }
 
@@ -68,13 +68,26 @@
 
 .navbar-auth {
   display: flex;
+
 }
 
 .button {
   border: none;
   color: #fff;
   padding: 0.5rem 1rem;
-  margin-left: 3rem;
+  margin-left: 5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.button2 {
+  border: none;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  margin-left: 1rem;
   cursor: pointer;
   font-size: 1rem;
   border-radius: 5px;
@@ -110,6 +123,8 @@
 .hamburger.active .hamburger-line:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
+
+
 
 @media (max-width: 768px) {
   .menu {

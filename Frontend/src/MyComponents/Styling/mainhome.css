@@ -1,5 +1,9 @@
 /* Styling/mainhome.css */
 
+.main-home{
+margin-top: 80px;
+}
+
 /* Hero Section */
 .section {
   display: flex;

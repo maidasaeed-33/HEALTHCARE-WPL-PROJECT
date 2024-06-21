@@ -7,6 +7,7 @@ import MedicineDelivery from './MyComponents/MedicineDelivery.js'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import DoctorList from './MyComponents/DoctorList.js'
 import AppointmentForm from './MyComponents/AppointmentForm.js'
+import Chatbot from './MyComponents/chatbot.js'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainHome />} />
         <Route path="/about" element={<About />} />
+        <Route path="/chatbot" element={<Chatbot />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/medicine" element={<MedicineDelivery />} />
         <Route path="/doctorappointment" element={<DoctorList />} />

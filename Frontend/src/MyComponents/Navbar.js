@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import logo from './Assets/logo.png';
 import HamburgerMenu from './HamburgerMenu';
 import Login from './Login';
@@ -40,34 +40,34 @@ const NavBar = () => {
   return (
     <nav className={`navbar ${visible ? 'visible' : 'hidden'}`}>
       <div className="navbar-container">
-        <Link to="/">
+        <NavLink to="/">
           <img src={logo} alt="Logo" className="logo" />
-        </Link>
+        </NavLink>
         <HamburgerMenu toggleMenu={toggleMenu} isOpen={isOpen} />
         <ul className={`menu ${isOpen ? 'show' : ''}`}>
           <li className="navbar-item">
-            <Link to="/">Home</Link>
+            <NavLink to="/" exact activeClassName="active">Home</NavLink>
           </li>
           <li className="navbar-item">
-            <Link to="/about">About</Link>
+            <NavLink to="/about" activeClassName="active">About</NavLink>
           </li>
           <li className="navbar-item">
-            <Link to="/chatbot">Chatbot</Link>
+            <NavLink to="/chatbot" activeClassName="active">Chatbot</NavLink>
           </li>
           <li className="navbar-item">
-            <Link to="/doctorappointment">Doctor Appointment</Link>
+            <NavLink to="/doctorappointment" activeClassName="active">Doctor Appointment</NavLink>
           </li>
           <li className="navbar-item">
-            <Link to="/medicine">Medicine Delivery</Link>
+            <NavLink to="/medicine" activeClassName="active">Medicine Delivery</NavLink>
           </li>
           <li className="navbar-item">
-            <Link to="/contact">Contact Us</Link>
+            <NavLink to="/contact" activeClassName="active">Contact Us</NavLink>
           </li>
           <div className="navbar-auth">
             <button className="button" onClick={handleLoginClick}>
               Login
             </button>
-            <button className="button" onClick={handleSignUpClick}>
+            <button className="button2" onClick={handleSignUpClick}>
               Sign Up
             </button>
           </div>
