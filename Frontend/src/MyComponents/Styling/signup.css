@@ -12,102 +12,114 @@
 }
 
 .container {
-  min-height: 400px;
-  width: 370px;
-  background-color: white;
-  box-shadow: 1px 1px 1px rgba(67, 63, 63, 0.479);
-  padding: 1.5rem 2rem;
-  border-radius: 20px;
+  width: 400px;
+  /* background-color: white; */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  border-radius: 10px;
   position: relative;
 }
-
 
 .form {
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .input-container {
   width: 100%;
   position: relative;
   margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
 }
 
 .field {
   width: 100%;
-  padding: 15px 40px;
-  border-radius: 14px;
-  border: 2px solid rgb(131, 103, 103);
+  padding: 0.75rem 2.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
   box-sizing: border-box;
+  font-size: 1rem;
 }
 
-.left-icon,
-.right-icon {
+.left-icon, .right-icon {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: #888;
+  z-index: 1;
 }
 
 .left-icon {
-  left: 10px;
+  left: 0.75rem;
 }
 
 .right-icon {
-  right: 10px;
+  right: 0.75rem;
+  cursor: pointer;
+}
+.error {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  width: 100%;
+  text-align: left;
+  padding-left: 2.5rem;
+  position: absolute;
+  top: calc(100% + 0.25rem); /* Position error messages below the input container */
+  left: 0;
+}
+.close-icon {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 1.5rem;
+  color: #333;
   cursor: pointer;
 }
 
-.checkbox {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  margin-bottom: 1.5rem;
-}
-
-.checkbox input {
-  margin-right: 0.5rem;
+.success {
+  color: green;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
 .form-btn {
   width: 100%;
-  margin-bottom: 1.5rem;
+  margin-top: 1rem;
 }
 
 .form-btn button {
   width: 100%;
-  padding: 10px;
+  padding: 0.75rem;
   color: white;
   background-color: rgb(52, 52, 238);
   border: none;
-  font-size: 15px;
+  font-size: 1rem;
   cursor: pointer;
   font-weight: bold;
+  border-radius: 8px;
 }
 
 .form-btn button:hover {
   background-color: rgb(69, 69, 245);
 }
 
-#text {
-  margin-top: 1.5rem;
-  text-align: center;
+.password-container {
+  width: 100%;
+  position: relative;
+  margin-bottom: 0.5rem; /* Add some spacing between the error message and the button */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
-
-#text a {
-  color: rgb(52, 52, 238);
-  text-decoration: none;
-}
-
-#text a:hover {
-  text-decoration: underline;
-}
-
-.close-icon {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 1.5rem;
-  color: #333;
-  cursor: pointer;
+.password-error {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  width: 100%;
+  text-align: left;
+  padding-left: 2.5rem;
 }
