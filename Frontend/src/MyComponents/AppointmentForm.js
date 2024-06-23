@@ -17,8 +17,21 @@ const AppointmentForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic, e.g., sending data to a server
-    alert(`Appointment made with Doctor ID: ${doctorId}`);
+
+    fetch('http://localhost:3001/appointments/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ ...formData, doctorId }),
+    })
+    .then(response => response.text()) // Updated to response.text() to handle plain text responses
+    .then(data => {
+      alert(`Appointment made with Doctor ID: ${doctorId}`);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
   };
 
   return (

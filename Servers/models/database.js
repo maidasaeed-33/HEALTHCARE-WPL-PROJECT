@@ -4,17 +4,18 @@ const db = mysql.createConnection({
   host: 'localhost',
   port: 3306,
   user: 'root',
-  password: 'admin',
+  password: 'maida#123',
   database: 'healthcare'
 });
 
 db.connect((err) => {
   if (err) {
     console.error('Error connecting to the database:', err);
-    return; // Exit the function if there's an error
+    return;
   } else {
     console.log('Connected to the MySQL database.');
-    createUsersTable(); // Call function to create users table
+    createUsersTable();
+    createAppointmentsTable();
   }
 });
 
@@ -34,6 +35,28 @@ function createUsersTable() {
       console.error('Error creating users table:', err);
     } else {
       console.log('Users table created successfully.');
+    }
+  });
+}
+
+function createAppointmentsTable() {
+  const createAppointmentsTableQuery = `
+    CREATE TABLE IF NOT EXISTS appointments (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      doctorId INT NOT NULL,
+      name VARCHAR(255) NOT NULL,
+      email VARCHAR(255) NOT NULL,
+      date DATE NOT NULL,
+      time TIME NOT NULL,
+      FOREIGN KEY (doctorId) REFERENCES doctors(id)
+    )
+  `;
+
+  db.query(createAppointmentsTableQuery, (err, result) => {
+    if (err) {
+      console.error('Error creating appointments table:', err);
+    } else {
+      console.log('Appointments table created successfully.');
     }
   });
 }

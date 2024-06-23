@@ -10,7 +10,7 @@ import Image5 from './Assets/Doctors/5.jpeg';
 import Image6 from './Assets/Doctors/6.jpeg';
 import Image7 from './Assets/Doctors/7.jpeg';
 import Image8 from './Assets/Doctors/8.jpeg';
-import Footer from './footer'
+import Footer from './footer';
 const doctors = [
     {
       id: 1,
@@ -63,58 +63,65 @@ const doctors = [
   ];
   
   const DoctorList = () => {
-    const [selectedCategory, setSelectedCategory] = useState('All');
-    const [searchTerm, setSearchTerm] = useState('');
-  
-    const handleCategoryChange = (e) => {
-      setSelectedCategory(e.target.value);
-    };
-  
-    const handleSearchChange = (e) => {
-      setSearchTerm(e.target.value);
-    };
-  
-    const filteredDoctors = doctors.filter((doctor) => {
-      const matchesCategory = selectedCategory === 'All' || doctor.specialty === selectedCategory;
-      const matchesSearch = doctor.name.toLowerCase().includes(searchTerm.toLowerCase());
-      return matchesCategory && matchesSearch;
-    });
-  
-    return (
-      <>
-        <NavBar />
-        <div className="filter-container">
-          <select value={selectedCategory} onChange={handleCategoryChange}>
-            <option value="All">All Specialties</option>
-            <option value="Neurologist">Neurologist</option>
-            <option value="Dermatologist">Dermatologist</option>
-            <option value="Cardiologist">Cardiologist</option>
-            <option value="Pediatrician">Pediatrician</option>
-            <option value="Orthopedist">Orthopedist</option>
-            <option value="Gynecologist">Gynecologist</option>
-            <option value="Oncologist">Oncologist</option>
-          </select>
-          <input
-            type="text"
-            placeholder="Search by name"
-            value={searchTerm}
-            onChange={handleSearchChange}
-          />
-        </div>
-        <div className="doctor-list">
-          {filteredDoctors.map((doctor) => (
-            <div key={doctor.id} className="doctor-card">
-              <img src={doctor.image} alt={doctor.name} />
-              <h3>{doctor.name}</h3>
-              <p>{doctor.specialty}</p>
-              <Link to={`/appoint/${doctor.id}`} className="appoint-button">Appoint Me</Link>
-            </div>
-          ))}
-        </div>
-        <Footer/>
-      </>
-    );
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
   };
-  
-  export default DoctorList;
-  
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const filteredDoctors = doctors.filter((doctor) => {
+    const matchesCategory = selectedCategory === 'All' || doctor.specialty === selectedCategory;
+    const matchesSearch = doctor.name.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
+  return (
+    <>
+      <NavBar />
+      <div className="filter-container">
+        <select value={selectedCategory} onChange={handleCategoryChange}>
+          <option value="All">All Specialties</option>
+          <option value="Neurologist">Neurologist</option>
+          <option value="Dermatologist">Dermatologist</option>
+          <option value="Cardiologist">Cardiologist</option>
+          <option value="Pediatrician">Pediatrician</option>
+          <option value="Orthopedist">Orthopedist</option>
+          <option value="Gynecologist">Gynecologist</option>
+          <option value="Oncologist">Oncologist</option>
+        </select>
+        <input
+          type="text"
+          placeholder="Search by name"
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+      </div>
+      <div className="doctor-list">
+        {filteredDoctors.map((doctor) => (
+          <div key={doctor.id} className="doctor-card">
+            <img src={doctor.image} alt={doctor.name} />
+            <h3>{doctor.name}</h3>
+            <p>{doctor.specialty}</p>
+            <Link
+              to={{
+                pathname: `/appoint/${doctor.id}`,
+                state: { doctorName: doctor.name, doctorSpecialty: doctor.specialty }
+              }}
+              className="appoint-button"
+            >
+              Appoint Me
+            </Link>
+          </div>
+        ))}
+      </div>
+      <Footer/>
+    </>
+  );
+};
+
+export default DoctorList;
