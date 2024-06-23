@@ -35,7 +35,7 @@ const MedicineDelivery = () => {
 
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
-    setSelectedMedicine(null); // Reset selected medicine when category changes
+    setSelectedMedicine(null); 
   };
 
   const handleOrderNow = (medicine) => {
@@ -44,8 +44,8 @@ const MedicineDelivery = () => {
 
   const handleAddToCart = () => {
     alert(`Added ${quantity} of ${selectedMedicine.name} to cart`);
-    setSelectedMedicine(null); // Reset selected medicine after adding to cart
-    setQuantity(1); // Reset quantity
+    setSelectedMedicine(null); 
+    setQuantity(1); 
   };
 
   const closeFullScreenCard = () => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import NavBar from './Navbar';
 import './Styling/chatbot.css';
-import Footer from './footer';
+// import Footer from './footer';
 
 const Chatbot = () => {
     const [input, setInput] = useState('');

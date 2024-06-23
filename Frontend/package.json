@@ -10,6 +10,8 @@
     "ansi-html-community": "^0.0.8",
     "axios": "^1.7.2",
     "bcrypt": "^5.1.1",
+    "emailjs": "^4.0.3",
+    "emailjs-com": "^3.2.0",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.1",

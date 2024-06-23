@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import logo from './Assets/logo.png';
+// import logo from './Assets/logo.png';
 import logo2 from './Assets/logo2.png';
 import HamburgerMenu from './HamburgerMenu';
 import Login from './Login';
@@ -18,13 +18,12 @@ const NavBar = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleScroll = () => {
-    const currentScrollPos = window.scrollY;
-    setVisible((prevScrollPos > currentScrollPos && prevScrollPos > 0) || currentScrollPos < 10);
-    setPrevScrollPos(currentScrollPos);
-  };
-
   useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+      setVisible((prevScrollPos > currentScrollPos && prevScrollPos > 0) || currentScrollPos < 10);
+      setPrevScrollPos(currentScrollPos);
+    };
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);

@@ -11,58 +11,59 @@ import Image6 from './Assets/Doctors/6.jpeg';
 import Image7 from './Assets/Doctors/7.jpeg';
 import Image8 from './Assets/Doctors/8.jpeg';
 import Footer from './footer';
+
 const doctors = [
-    {
-      id: 1,
-      name: 'Dr. John Doe',
-      specialty: 'Neurologist',
-      image: Image1,
-    },
-    {
-      id: 2,
-      name: 'Dr. Jane Smith',
-      specialty: 'Dermatologist',
-      image: Image2,
-    },
-    {
-      id: 3,
-      name: 'Dr. Emily Johnson',
-      specialty: 'Dermatologist',
-      image: Image3,
-    },
-    {
-      id: 4,
-      name: 'Dr. Michael Thompson',
-      specialty: 'Cardiologist',
-      image: Image4,
-    },
-    {
-      id: 5,
-      name: 'Dr. Sarah Wilson',
-      specialty: 'Pediatrician',
-      image: Image5,
-    },
-    {
-      id: 6,
-      name: 'Dr. David Lee',
-      specialty: 'Orthopedist',
-      image: Image6,
-    },
-    {
-      id: 7,
-      name: 'Dr. Emily Davis',
-      specialty: 'Gynecologist',
-      image: Image7,
-    },
-    {
-      id: 8,
-      name: 'Dr. James Smith',
-      specialty: 'Oncologist',
-      image: Image8,
-    },
-  ];
-  
-  const DoctorList = () => {
+  {
+    id: 1,
+    name: 'Dr. John Doe',
+    specialty: 'Neurologist',
+    image: Image1,
+  },
+  {
+    id: 2,
+    name: 'Dr. Jane Smith',
+    specialty: 'Dermatologist',
+    image: Image2,
+  },
+  {
+    id: 3,
+    name: 'Dr. Emily Johnson',
+    specialty: 'Dermatologist',
+    image: Image3,
+  },
+  {
+    id: 4,
+    name: 'Dr. Michael Thompson',
+    specialty: 'Cardiologist',
+    image: Image4,
+  },
+  {
+    id: 5,
+    name: 'Dr. Sarah Wilson',
+    specialty: 'Pediatrician',
+    image: Image5,
+  },
+  {
+    id: 6,
+    name: 'Dr. David Lee',
+    specialty: 'Orthopedist',
+    image: Image6,
+  },
+  {
+    id: 7,
+    name: 'Dr. Emily Davis',
+    specialty: 'Gynecologist',
+    image: Image7,
+  },
+  {
+    id: 8,
+    name: 'Dr. James Smith',
+    specialty: 'Oncologist',
+    image: Image8,
+  },
+];
+
+const DoctorList = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -108,10 +109,7 @@ const doctors = [
             <h3>{doctor.name}</h3>
             <p>{doctor.specialty}</p>
             <Link
-              to={{
-                pathname: `/appoint/${doctor.id}`,
-                state: { doctorName: doctor.name, doctorSpecialty: doctor.specialty }
-              }}
+              to={`/appoint/${doctor.id}?name=${encodeURIComponent(doctor.name)}&specialty=${encodeURIComponent(doctor.specialty)}`}
               className="appoint-button"
             >
               Appoint Me
@@ -119,7 +117,7 @@ const doctors = [
           </div>
         ))}
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };
