@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const authRoutes = require('./routes/auth');
-const appointmentRoutes = require('./routes/appointments'); // Import the appointment routes
+const appointmentRoutes = require('./routes/auth');
 
 const app = express();
 
@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
 app.use('/auth', authRoutes);
-app.use('/appointments', appointmentRoutes); // Use the appointment routes
+app.use('/appointments', appointmentRoutes); // Add this line
 
 // Start server
 const PORT = process.env.PORT || 3001;

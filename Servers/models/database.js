@@ -4,18 +4,17 @@ const db = mysql.createConnection({
   host: 'localhost',
   port: 3306,
   user: 'root',
-  password: 'maida#123',
+  password: 'admin',
   database: 'healthcare'
 });
 
 db.connect((err) => {
   if (err) {
     console.error('Error connecting to the database:', err);
-    return;
+    return; // Exit the function if there's an error
   } else {
     console.log('Connected to the MySQL database.');
-    createUsersTable();
-    createAppointmentsTable();
+    createUsersTable(); // Call function to create users table
   }
 });
 
@@ -40,19 +39,20 @@ function createUsersTable() {
 }
 
 function createAppointmentsTable() {
-  const createAppointmentsTableQuery = `
+  const createAppointmentTableQuery = `
     CREATE TABLE IF NOT EXISTS appointments (
       id INT AUTO_INCREMENT PRIMARY KEY,
-      doctorId INT NOT NULL,
-      name VARCHAR(255) NOT NULL,
-      email VARCHAR(255) NOT NULL,
-      date DATE NOT NULL,
-      time TIME NOT NULL,
-      FOREIGN KEY (doctorId) REFERENCES doctors(id)
+      doctor_id INT NOT NULL,
+      doctor_name VARCHAR(255) NOT NULL,
+      doctor_specialty VARCHAR(255) NOT NULL,
+      patient_name VARCHAR(255) NOT NULL,
+      patient_email VARCHAR(255) NOT NULL,
+      appointment_date DATE NOT NULL,
+      appointment_time TIME NOT NULL
     )
   `;
 
-  db.query(createAppointmentsTableQuery, (err, result) => {
+  db.query(createAppointmentTableQuery, (err, result) => {
     if (err) {
       console.error('Error creating appointments table:', err);
     } else {
@@ -60,5 +60,17 @@ function createAppointmentsTable() {
     }
   });
 }
+
+// Call this function after connecting to the database
+db.connect((err) => {
+  if (err) {
+    console.error('Error connecting to the database:', err);
+    return;
+  } else {
+    console.log('Connected to the MySQL database.');
+    createUsersTable();
+    createAppointmentsTable(); // Add this line
+  }
+});
 
 module.exports = db;
