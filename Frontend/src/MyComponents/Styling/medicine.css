@@ -11,7 +11,7 @@
 
 .medicine-delivery {
   text-align: center;
-  padding: 50px;
+  padding: 60px;
   font-family: 'Arial', sans-serif;
 }
 
@@ -212,6 +212,38 @@ select {
 
 /* Styling for smaller screens */
 @media (max-width: 768px) {
+  .selected-medicine-content {
+    padding: 20px;
+    width: 90%;
+  }
+
+  .selected-medicine-image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .selected-medicine-content h2 {
+    font-size: 1.4rem;
+  }
+
+  .selected-medicine-content p {
+    font-size: 1rem;
+  }
+
+  .selected-medicine-content input {
+    width: 70px;
+    padding: 5px;
+    font-size: 1rem;
+  }
+
+  .selected-medicine-content button {
+    padding: 8px 15px;
+    font-size: 1.2rem;
+  }
+
+  .medicine-delivery {
+    padding: 25px;
+  }
 
   .search-label,
   .search-input,
@@ -240,6 +272,8 @@ select {
 
 /* Styling for larger screens */
 @media (min-width: 769px) {
+
+
   .search-label {
     font-size: 1.2rem;
     margin-left: 20px;
@@ -263,4 +297,6 @@ select {
   .medicine-card {
     width: 260px;
   }
+
+
 }
