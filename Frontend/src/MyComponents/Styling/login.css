@@ -123,9 +123,19 @@
 
 .error {
   position: absolute;
-  bottom: -20px; 
+  bottom: -20px;
   left: 0;
   margin: 5px;
   color: red;
   font-size: 17px;
+}
+
+.link-button {
+  background: none;
+  color: blue;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
 }

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addToCart } from './redux/cartReducer';
 import './Styling/medicine.css';
 import NavBar from './Navbar';
 import Footer from './footer';
@@ -27,15 +29,22 @@ const medicines = [
   { id: 20, name: 'Acta White Cleanser Skin Brightening Face Wash 50Ml', price: 640, category: 'skin care', image: 'https://www.dvago.pk/_next/image?url=https%3A%2F%2Fdvago-assets.s3.ap-southeast-1.amazonaws.com%2Fdvago-products-images%2Facta-white-face-wash-1s.webp&w=320&q=50' },
 ];
 
+
+
+
 const MedicineDelivery = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedMedicine, setSelectedMedicine] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
+  const [showNotification, setShowNotification] = useState(false); // State for notification
+  const [notificationMessage, setNotificationMessage] = useState('');
+
+  const dispatch = useDispatch();
 
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
-    setSelectedMedicine(null); 
+    setSelectedMedicine(null);
   };
 
   const handleOrderNow = (medicine) => {
@@ -43,9 +52,14 @@ const MedicineDelivery = () => {
   };
 
   const handleAddToCart = () => {
-    alert(`Added ${quantity} of ${selectedMedicine.name} to cart`);
-    setSelectedMedicine(null); 
-    setQuantity(1); 
+    dispatch(addToCart({ ...selectedMedicine, quantity }));
+    setNotificationMessage(`${selectedMedicine.name} has been added to your cart.`);
+    setShowNotification(true);
+    setSelectedMedicine(null);
+    setQuantity(1);
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 3000); // Hide notification after 3 seconds
   };
 
   const closeFullScreenCard = () => {
@@ -75,10 +89,7 @@ const MedicineDelivery = () => {
             <select id="category" onChange={handleCategoryChange} value={selectedCategory}>
               <option value="">All</option>
               <option value="eye, ear, nose">Eye, Ear, Nose</option>
-              <option value="circulatory system">Circulatory System</option>
-              <option value="others">Others</option>
-              <option value="digestive system">Digestive System</option>
-              <option value="skin care">Skin Care</option>
+              {/* Other options */}
             </select>
 
             <label htmlFor="search" className="search-label">Search Medicine: </label>
@@ -125,6 +136,13 @@ const MedicineDelivery = () => {
         </div>
         <Footer />
       </div>
+
+      {/* Notification */}
+      {showNotification && (
+        <div className="notification">
+          <p>{notificationMessage}</p>
+        </div>
+      )}
     </>
   );
 };

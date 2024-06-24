@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-// import logo from './Assets/logo.png';
 import logo2 from './Assets/logo2.png';
 import HamburgerMenu from './HamburgerMenu';
 import Login from './Login';
 import SignUp from './Signup';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import './Styling/navbar.css';
 
 const NavBar = () => {
@@ -43,7 +44,14 @@ const NavBar = () => {
         <NavLink to="/">
           <img src={logo2} alt="Logo" className="logo" />
         </NavLink>
-        <HamburgerMenu toggleMenu={toggleMenu} isOpen={isOpen} />
+        <div className="navbar-right">
+          <NavLink to="/cart" className="cart-link">
+            <FontAwesomeIcon icon={faShoppingCart} className="cart-icon" />
+          </NavLink>
+          <HamburgerMenu toggleMenu={toggleMenu} isOpen={isOpen} />
+        </div>
+
+
         <ul className={`menu ${isOpen ? 'show' : ''}`}>
           <li className="navbar-item">
             <NavLink to="/" exact activeClassName="active">Home</NavLink>
