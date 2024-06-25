@@ -11,10 +11,12 @@ const db = mysql.createConnection({
 db.connect((err) => {
   if (err) {
     console.error('Error connecting to the database:', err);
-    return; // Exit the function if there's an error
+    return;
   } else {
     console.log('Connected to the MySQL database.');
-    createUsersTable(); // Call function to create users table
+    createUsersTable();
+    createAppointmentsTable();
+    createOrdersTable();
   }
 });
 
@@ -61,16 +63,29 @@ function createAppointmentsTable() {
   });
 }
 
-// Call this function after connecting to the database
-db.connect((err) => {
-  if (err) {
-    console.error('Error connecting to the database:', err);
-    return;
-  } else {
-    console.log('Connected to the MySQL database.');
-    createUsersTable();
-    createAppointmentsTable(); // Add this line
-  }
-});
+function createOrdersTable() {
+  const createOrderTableQuery = `
+    CREATE TABLE IF NOT EXISTS orders (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      customer_name VARCHAR(255) NOT NULL,
+      phone_number VARCHAR(50) NOT NULL,
+      email VARCHAR(255) NOT NULL,
+      address TEXT NOT NULL,
+      country VARCHAR(100) NOT NULL,
+      city VARCHAR(100) NOT NULL,
+      items JSON NOT NULL,
+      total_price DECIMAL(10, 2) NOT NULL,
+      order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+  `;
+
+  db.query(createOrderTableQuery, (err, result) => {
+    if (err) {
+      console.error('Error creating orders table:', err);
+    } else {
+      console.log('Orders table created successfully.');
+    }
+  });
+}
 
 module.exports = db;

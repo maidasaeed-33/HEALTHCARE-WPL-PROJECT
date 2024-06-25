@@ -6,13 +6,12 @@ const Chatbot = () => {
     const [input, setInput] = useState('');
     const [messages, setMessages] = useState([]);
     const [isTyping, setIsTyping] = useState(false);
-    const [botTyping, setBotTyping] = useState(false);
     const chatbotMessagesRef = useRef(null);
 
     const sendMessage = async () => {
         if (input.trim() === '') return;
 
-        const userMessage = { sender: 'user', text: input }; // Assuming all messages are in English
+        const userMessage = { sender: 'user', text: input };
         setMessages((prevMessages) => [...prevMessages, userMessage]);
         setInput('');
 
@@ -33,11 +32,9 @@ const Chatbot = () => {
 
             const data = await response.json();
             setIsTyping(false);
-            setBotTyping(true);
             simulateTyping(data.answer);
         } catch (error) {
             setIsTyping(false);
-            setBotTyping(false);
             console.error('Failed to fetch:', error);
         }
     };
@@ -60,11 +57,10 @@ const Chatbot = () => {
                 });
                 index++;
             } else {
-                setBotTyping(false);
                 clearInterval(interval);
                 scrollChatToBottom();
             }
-        }, 12); // Increase typing speed
+        }, 12);
     };
 
     const handleInputChange = (e) => {
