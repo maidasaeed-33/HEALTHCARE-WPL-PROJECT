@@ -95,12 +95,7 @@ const Login = ({ isOpen, onClose, onSignUpClick }) => {
             <div className="login-btn">
               <button type="submit">Login</button>
             </div>
-            <div id="text">
-              Don't have an Account?
-              <button type="button" className="link-button" onClick={onSignUpClick}>
-                Sign Up
-              </button>
-            </div>
+            <div id="text">Don't have an Account? <a href="#" onClick={onSignUpClick}>Sign Up</a></div>
           </form>
         </div>
       </div>

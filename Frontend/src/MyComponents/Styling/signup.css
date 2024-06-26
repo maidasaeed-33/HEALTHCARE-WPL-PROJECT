@@ -42,8 +42,7 @@
   font-size: 1rem;
 }
 
-.left-icon,
-.right-icon {
+.left-icon, .right-icon {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -60,7 +59,6 @@
   right: 0.75rem;
   cursor: pointer;
 }
-
 .error {
   color: red;
   font-size: 0.85rem;
@@ -69,11 +67,10 @@
   text-align: left;
   padding-left: 2.5rem;
   position: absolute;
-  top: calc(100% + 0.25rem);
-  /* Position error messages below the input container */
+  top: calc(100% + 0.25rem); 
   left: 0;
+  
 }
-
 .close-icon {
   position: absolute;
   top: 0.5rem;
@@ -114,13 +111,11 @@
 .password-container {
   width: 100%;
   position: relative;
-  margin-bottom: 0.5rem;
-  /* Add some spacing between the error message and the button */
+  margin-bottom: 0.5rem; 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-
 .password-error {
   color: red;
   font-size: 0.85rem;
@@ -128,4 +123,48 @@
   width: 100%;
   text-align: left;
   padding-left: 2.5rem;
+}
+
+/* 
+.name-error, .general-error {
+  padding-left: 2.5rem;
+} */
+
+@media (max-width: 600px) {
+  .container {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .field {
+    padding: 0.75rem 2rem;
+    font-size: 0.9rem;
+  }
+
+  .left-icon, .right-icon {
+    font-size: 1rem;
+  }
+
+  .error, .password-error {
+    font-size: 0.75rem;
+    padding-left: 2rem;
+  }
+
+  .close-icon {
+    font-size: 1rem;
+    position: absolute;
+    top: 0.1rem; 
+    right: 0.29rem; 
+    cursor: pointer;
+    z-index: 1000; 
+  }
+
+  .form-btn button {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .success {
+    font-size: 0.9rem;
+  }
 }

@@ -19,7 +19,7 @@ const SignUp = ({ isOpen, onClose }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     try {
       const response = await axios.post('http://localhost:3001/auth/validate', formData);
       if (response.data.message === 'Form data is valid') {
@@ -72,12 +72,13 @@ const SignUp = ({ isOpen, onClose }) => {
   const handleBlur = async (event) => {
     const { name, value } = event.target;
     const formDataCopy = { ...formData, [name]: value };
-
+  
     try {
       const response = await axios.post('http://localhost:3001/auth/validate', formDataCopy);
       if (response.data.message === 'Form data is valid') {
         setErrors({});
-      } else {
+      } 
+      else {
         setErrors(response.data);
       }
     } catch (error) {
@@ -111,7 +112,7 @@ const SignUp = ({ isOpen, onClose }) => {
       className="modal"
       overlayClassName="modal-overlay"
     >
-      <div className="container">
+ <div className="container">
         <div className="form">
           <FaTimes className="close-icon" onClick={onClose} />
           <form onSubmit={handleSubmit}>
@@ -123,10 +124,11 @@ const SignUp = ({ isOpen, onClose }) => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                required
+                // onBlur={handleBlur}
+                // required
                 className="field"
               />
-              {errors.name && <div className="error">{errors.name}</div>}
+             {/* {errors.name && <div className="error">{errors.name}</div>} */}
             </div>
             <div className="input-container">
               <FaUser className="left-icon" />
@@ -142,6 +144,8 @@ const SignUp = ({ isOpen, onClose }) => {
               />
               {errors.username && <div className="error">{errors.username}</div>}
             </div>
+            {errors.general && <div className="error general-error">{errors.general}</div>}
+
             <div className="input-container">
               <FaEnvelope className="left-icon" />
               <input
@@ -174,7 +178,9 @@ const SignUp = ({ isOpen, onClose }) => {
                   <FaEyeSlash className="right-icon" onClick={togglePasswordVisibility} />
                 )}
               </div>
-              {errors.password && <div className="error">{errors.password}</div>}
+              {errors.password && <div className="password-error">{errors.password}</div>}
+            </div>
+            <div className="password-container"> {/* Adjusted to be a password-container */}
               <div className="input-container">
                 <FaLock className="left-icon" />
                 <input
@@ -189,13 +195,16 @@ const SignUp = ({ isOpen, onClose }) => {
                 {confirmPasswordVisible ? (
                   <FaEye className="right-icon" onClick={toggleConfirmPasswordVisibility} />
                 ) : (
-                  <FaEyeSlash className="right-icon" onClick={toggleConfirmPasswordVisibility} />
+                  <FaEyeSlash  className="right-icon" onClick={toggleConfirmPasswordVisibility} />
                 )}
               </div>
-              {errors.confirmPassword && <div className="error">{errors.confirmPassword}</div>}
+              {/* {formData.confirmPassword !== '' && formData.confirmPassword !== formData.password && (
+                <div className="error">Passwords do not match</div>
+              )} */}
+              {errors.confirmPassword && <div className="password-error">{errors.confirmPassword}</div>}
             </div>
-            {errors.general && <div className="error">{errors.general}</div>}
             {success && <div className="success">{success}</div>}
+            {errors.general && <div className="error">{errors.general}</div>}
             <div className="form-btn">
               <button type="submit">Sign Up</button>
             </div>

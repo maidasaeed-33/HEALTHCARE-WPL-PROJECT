@@ -37,7 +37,15 @@ exports.signup = async (req, res) => {
 
   const { error } = validateSignup({ name, email, password, username, confirmPassword });
   if (error) {
-    // ... (existing code)
+    const errors = {};
+    error.details.forEach(detail => {
+      if (detail.path[0] !== 'name') { // Ignore name field errors
+        errors[detail.path[0]] = detail.message;
+      }
+    });
+    if (Object.keys(errors).length > 0) {
+      return res.status(400).send(errors);
+    }
   }
 
   try {
@@ -48,7 +56,7 @@ exports.signup = async (req, res) => {
 
     // Insert the user into the database
     const query = 'INSERT INTO users (name, email, username, password) VALUES (?, ?, ?, ?)';
-    const [result] = await db.promise().query(query, [name, email, username, hashedPassword]);
+    const [result] = await db.promise().query(query, [name || '', email, username, hashedPassword]);
 
     if (result.affectedRows > 0) {
       res.send({ message: 'Signed up successfully' });

@@ -7,15 +7,20 @@ import './Styling/mainhome.css';
 import medicine from './Assets/medicine.jpg';
 import chatbot from './Assets/chatbot.png';
 import Footer from './footer';
+
+
 const MainHome = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
 
   const handleLoginClick = () => setShowLoginModal(true);
-  const handleSignUpClick = () => setShowSignUpModal(true);
+  const handleSignUpClick = () => {
+    setShowSignUpModal(true);
+    setShowLoginModal(false); // Close the Login modal when opening SignUp modal
+  };
   const handleModalClose = () => {
     setShowLoginModal(false);
-
+    setShowSignUpModal(false);
   };
 
   return (
