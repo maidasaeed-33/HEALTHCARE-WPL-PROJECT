@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -21,6 +20,9 @@ const Cart = () => {
         city: '',
     });
 
+    const [formErrors, setFormErrors] = useState({});
+    const [showConfirmation, setShowConfirmation] = useState(false);
+
     const handleChange = (e) => {
         setCustomerDetails({
             ...customerDetails,
@@ -28,8 +30,28 @@ const Cart = () => {
         });
     };
 
-    const handleSubmit = async (e) => {
+    const validateForm = () => {
+        const errors = {};
+        if (!customerDetails.name.trim()) errors.name = "Name is required";
+        if (!customerDetails.phoneNumber.trim()) errors.phoneNumber = "Phone number is required";
+        if (!customerDetails.email.trim()) errors.email = "Email is required";
+        if (!customerDetails.address.trim()) errors.address = "Address is required";
+        if (!customerDetails.country.trim()) errors.country = "Country is required";
+        if (!customerDetails.city.trim()) errors.city = "City is required";
+        return errors;
+    };
+
+    const handleSubmit = (e) => {
         e.preventDefault();
+        const errors = validateForm();
+        if (Object.keys(errors).length > 0) {
+            setFormErrors(errors);
+            return;
+        }
+        setShowConfirmation(true);
+    };
+
+    const confirmOrder = async () => {
         const orderDetails = {
             customer_name: customerDetails.name,
             phone_number: customerDetails.phoneNumber,
@@ -51,18 +73,20 @@ const Cart = () => {
             });
 
             if (response.ok) {
+                const result = await response.json();
                 dispatch(clearCart());
                 alert('Order placed successfully!');
                 navigate('/');
             } else {
-                alert('Error placing order. Please try again.');
+                const errorData = await response.json();
+                alert(`Error placing order: ${errorData.message || 'Please try again.'}`);
             }
         } catch (error) {
             console.error('Error placing order:', error);
-            alert('Error placing order. Please try again.');
+            alert('Error placing order. Please check your internet connection and try again.');
         }
+        setShowConfirmation(false);
     };
-
 
     const handleRemoveFromCart = (itemId) => {
         dispatch(removeFromCart(itemId));
@@ -118,26 +142,32 @@ const Cart = () => {
                                         <div>
                                             <label htmlFor="name">Name:</label>
                                             <input type="text" id="name" name="name" value={customerDetails.name} onChange={handleChange} required />
+                                            {formErrors.name && <span className="error">{formErrors.name}</span>}
                                         </div>
                                         <div>
                                             <label htmlFor="phoneNumber">Phone Number:</label>
                                             <input type="text" id="phoneNumber" name="phoneNumber" value={customerDetails.phoneNumber} onChange={handleChange} required />
+                                            {formErrors.phoneNumber && <span className="error">{formErrors.phoneNumber}</span>}
                                         </div>
                                         <div>
                                             <label htmlFor="email">Email:</label>
                                             <input type="email" id="email" name="email" value={customerDetails.email} onChange={handleChange} required />
+                                            {formErrors.email && <span className="error">{formErrors.email}</span>}
                                         </div>
                                         <div>
                                             <label htmlFor="address">Address:</label>
                                             <input type="text" id="address" name="address" value={customerDetails.address} onChange={handleChange} required />
+                                            {formErrors.address && <span className="error">{formErrors.address}</span>}
                                         </div>
                                         <div>
                                             <label htmlFor="country">Country:</label>
                                             <input type="text" id="country" name="country" value={customerDetails.country} onChange={handleChange} required />
+                                            {formErrors.country && <span className="error">{formErrors.country}</span>}
                                         </div>
                                         <div>
                                             <label htmlFor="city">City:</label>
                                             <input type="text" id="city" name="city" value={customerDetails.city} onChange={handleChange} required />
+                                            {formErrors.city && <span className="error">{formErrors.city}</span>}
                                         </div>
                                         <button type="submit">Place Order</button>
                                     </form>
@@ -148,6 +178,15 @@ const Cart = () => {
                 </div>
                 <Footer />
             </div>
+
+            {showConfirmation && (
+                <div className="confirmation-modal">
+                    <h2>Confirm Your Order</h2>
+                    <p>Total: Rs {getTotalPrice()}</p>
+                    <button onClick={confirmOrder}>Confirm</button>
+                    <button onClick={() => setShowConfirmation(false)}>Cancel</button>
+                </div>
+            )}
         </>
     );
 };

@@ -5,11 +5,10 @@
 /.pnp
 .pnp.js
 
-
-/node_modules
-
 # testing
 /coverage
+
+/chatbot models
 
 # production
 /build

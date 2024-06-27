@@ -3,40 +3,44 @@ from flask_cors import CORS
 import torch
 import torch.nn as nn
 import re
-from transformers import BertTokenizer, BertModel
+from transformers import DistilBertTokenizer, DistilBertModel
 import pandas as pd
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
-# Load the multilingual BERT model
-bert = BertModel.from_pretrained('bert-base-multilingual-uncased')
-
-# Load the multilingual BERT tokenizer
-tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-uncased')
-
-# Set device
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Load answers from the CSV file
-answers_df = pd.read_csv('./chatbot models/cleaned_medical.csv')
-answers = answers_df['answers'].tolist()
+answers_df = pd.read_csv('./chatbot models/medical.csv')
+answers = answers_df['Answer'].tolist()
 
-class BERT_Arch(nn.Module):
-    def __init__(self, bert):
-        super(BERT_Arch, self).__init__()
-        self.bert = bert
+
+class DistilBERT_Arch(nn.Module):
+    def __init__(self, distilbert):
+        super(DistilBERT_Arch, self).__init__()
+        self.distilbert = distilbert
         self.dropout = nn.Dropout(0.1)
-        self.fc1 = nn.Linear(768, len(answers))  # Update to the number of answers
+        self.fc1 = nn.Linear(768, len(answers))
 
-    def forward(self, sent_id, attention_mask):
-        cls_hs = self.bert(sent_id, attention_mask=attention_mask)[0][:, 0]
+    def forward(self, input_ids, attention_mask):
+        outputs = self.distilbert(input_ids, attention_mask=attention_mask)
+        cls_hs = outputs[0][:, 0]
         x = self.dropout(cls_hs)
         output = self.fc1(x)
         return output
 
+
+
+# Set device
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")    
+
+# Load DistilBERT model and tokenizer
+distilbert = DistilBertModel.from_pretrained('distilbert-base-uncased')
+tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased')
+
+
 model_path = "./chatbot models/trained_model.pth"
-model = BERT_Arch(bert)
+model = DistilBERT_Arch(distilbert)
 model.load_state_dict(torch.load(model_path, map_location=device))
 model.to(device)
 

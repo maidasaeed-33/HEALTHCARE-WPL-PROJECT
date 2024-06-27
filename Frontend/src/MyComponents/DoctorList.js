@@ -1,71 +1,51 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from './Navbar';
 import './Styling/DoctorList.css';
-import Image1 from './Assets/Doctors/1.jpeg';
-import Image2 from './Assets/Doctors/2.jpeg';
-import Image3 from './Assets/Doctors/3.jpeg';
-import Image4 from './Assets/Doctors/4.jpeg';
-import Image5 from './Assets/Doctors/5.jpeg';
-import Image6 from './Assets/Doctors/6.jpeg';
-import Image7 from './Assets/Doctors/7.jpeg';
-import Image8 from './Assets/Doctors/8.jpeg';
 import Footer from './footer';
 
-const doctors = [
-  {
-    id: 1,
-    name: 'Dr. John Doe',
-    specialty: 'Neurologist',
-    image: Image1,
-  },
-  {
-    id: 2,
-    name: 'Dr. Jane Smith',
-    specialty: 'Dermatologist',
-    image: Image2,
-  },
-  {
-    id: 3,
-    name: 'Dr. Emily Johnson',
-    specialty: 'Dermatologist',
-    image: Image3,
-  },
-  {
-    id: 4,
-    name: 'Dr. Michael Thompson',
-    specialty: 'Cardiologist',
-    image: Image4,
-  },
-  {
-    id: 5,
-    name: 'Dr. Sarah Wilson',
-    specialty: 'Pediatrician',
-    image: Image5,
-  },
-  {
-    id: 6,
-    name: 'Dr. David Lee',
-    specialty: 'Orthopedist',
-    image: Image6,
-  },
-  {
-    id: 7,
-    name: 'Dr. Emily Davis',
-    specialty: 'Gynecologist',
-    image: Image7,
-  },
-  {
-    id: 8,
-    name: 'Dr. James Smith',
-    specialty: 'Oncologist',
-    image: Image8,
-  },
-];
+const spaceId = 'aqxvxbaxg42i';
+const accessToken = 'thagZQi0iG4XD1IKrCvF9tzUi96042JHoG1ohhBEBCE';
+
+async function getDoctors() {
+  const res = await fetch(`https://cdn.contentful.com/spaces/${spaceId}/entries?access_token=${accessToken}&content_type=doctors`);
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+  return res.json();
+}
 
 const DoctorList = () => {
+  const [doctors, setDoctors] = useState([]);
+  const [assets, setAssets] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    getDoctors()
+      .then(data => {
+        console.log('Fetched data:', data);
+        if (data && data.items && data.includes && data.includes.Asset) {
+          setDoctors(data.items);
+
+          const assetMap = {};
+          data.includes.Asset.forEach(asset => {
+            assetMap[asset.sys.id] = asset.fields.file.url;
+          });
+          setAssets(assetMap);
+        } else {
+          setError('Unexpected data structure');
+        }
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching doctors:', error);
+        setError('Failed to fetch doctors');
+        setLoading(false);
+      });
+  }, []);
 
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
@@ -76,8 +56,8 @@ const DoctorList = () => {
   };
 
   const filteredDoctors = doctors.filter((doctor) => {
-    const matchesCategory = selectedCategory === 'All' || doctor.specialty === selectedCategory;
-    const matchesSearch = doctor.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory === 'All' || doctor.fields.specialty === selectedCategory;
+    const matchesSearch = doctor.fields.name.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
@@ -102,20 +82,40 @@ const DoctorList = () => {
           onChange={handleSearchChange}
         />
       </div>
-      <div className="doctor-list">
-        {filteredDoctors.map((doctor) => (
-          <div key={doctor.id} className="doctor-card">
-            <img src={doctor.image} alt={doctor.name} />
-            <h3>{doctor.name}</h3>
-            <p>{doctor.specialty}</p>
-            <Link
-              to={`/appoint/${doctor.id}?name=${encodeURIComponent(doctor.name)}&specialty=${encodeURIComponent(doctor.specialty)}`}
-              className="appoint-button"
-            >
-              Appoint Me
-            </Link>
+      <div className="doctor-list-container">
+        {loading ? (
+          <div className="loading-spinner">
+            <div className="spinner"></div>
           </div>
-        ))}
+        ) : error ? (
+          <div className="error-message">Error: {error}</div>
+        ) : (
+          <div className="doctor-list">
+            {filteredDoctors.map((doctor) => {
+              const imageId = doctor.fields.image && doctor.fields.image.sys && doctor.fields.image.sys.id;
+              const imageUrl = imageId && assets[imageId];
+              console.log('Doctor:', doctor.fields.name, 'Image ID:', imageId, 'Image URL:', imageUrl);
+
+              return (
+                <div key={doctor.sys.id} className="doctor-card">
+                  {imageUrl ? (
+                    <img src={imageUrl} alt={doctor.fields.name} />
+                  ) : (
+                    <div>No image available</div>
+                  )}
+                  <h3>{doctor.fields.name}</h3>
+                  <p>{doctor.fields.specialty}</p>
+                  <Link
+                    to={`/appoint/${doctor.sys.id}?name=${encodeURIComponent(doctor.fields.name)}&specialty=${encodeURIComponent(doctor.fields.specialty)}`}
+                    className="appoint-button"
+                  >
+                    Appoint Me
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
       <Footer />
     </>
