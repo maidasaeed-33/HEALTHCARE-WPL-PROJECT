@@ -12,7 +12,7 @@ const Chatbot = () => {
     const sendMessage = async () => {
         if (input.trim() === '') return;
 
-        const userMessage = { sender: 'user', text: input }; // Assuming all messages are in English
+        const userMessage = { sender: 'user', text: input };
         setMessages((prevMessages) => [...prevMessages, userMessage]);
         setInput('');
 
@@ -64,7 +64,7 @@ const Chatbot = () => {
                 clearInterval(interval);
                 scrollChatToBottom();
             }
-        }, 12); // Increase typing speed
+        }, 6);
     };
 
     const handleInputChange = (e) => {

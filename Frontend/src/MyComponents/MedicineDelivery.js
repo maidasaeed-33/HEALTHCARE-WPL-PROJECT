@@ -5,8 +5,8 @@ import './Styling/medicine.css';
 import NavBar from './Navbar';
 import Footer from './footer';
 
-const spaceId = 'YourSpcaeID2i';
-const accessToken = 'YourAPiKey';
+const spaceId = 'aqxvxbaxg42i';
+const accessToken = 'thagZQi0iG4XD1IKrCvF9tzUi96042JHoG1ohhBEBCE';
 
 async function getMedicines() {
   const res = await fetch(`https://cdn.contentful.com/spaces/${spaceId}/entries?access_token=${accessToken}&content_type=medicines`);

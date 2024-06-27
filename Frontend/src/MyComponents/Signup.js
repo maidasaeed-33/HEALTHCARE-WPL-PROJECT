@@ -19,7 +19,7 @@ const SignUp = ({ isOpen, onClose }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     try {
       const response = await axios.post('http://localhost:3001/auth/validate', formData);
       if (response.data.message === 'Form data is valid') {
@@ -27,10 +27,9 @@ const SignUp = ({ isOpen, onClose }) => {
         console.log(signupResponse.data);
         setErrors({});
         setSuccess('Signed up successfully');
-        // Redirect to the current page after a short delay (e.g., 2 seconds)
         setTimeout(() => {
-          onClose(); // Close the modal
-          window.location.reload(); // Reload the current page
+          onClose();
+          window.location.reload();
         }, 2000);
       } else {
         setErrors(response.data);
@@ -50,14 +49,12 @@ const SignUp = ({ isOpen, onClose }) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
 
-    // Clear password error when the user updates the password field
     if (name === 'password') {
       const newErrors = { ...errors };
       delete newErrors.password;
       setErrors(newErrors);
     }
 
-    // Validate confirm password on change
     if (name === 'confirmPassword') {
       if (value !== formData.password) {
         setErrors({ ...errors, confirmPassword: 'Passwords do not match' });
@@ -72,13 +69,12 @@ const SignUp = ({ isOpen, onClose }) => {
   const handleBlur = async (event) => {
     const { name, value } = event.target;
     const formDataCopy = { ...formData, [name]: value };
-  
+
     try {
       const response = await axios.post('http://localhost:3001/auth/validate', formDataCopy);
       if (response.data.message === 'Form data is valid') {
         setErrors({});
-      } 
-      else {
+      } else {
         setErrors(response.data);
       }
     } catch (error) {
@@ -112,7 +108,7 @@ const SignUp = ({ isOpen, onClose }) => {
       className="modal"
       overlayClassName="modal-overlay"
     >
- <div className="container">
+      <div className="container">
         <div className="form">
           <FaTimes className="close-icon" onClick={onClose} />
           <form onSubmit={handleSubmit}>
@@ -124,11 +120,11 @@ const SignUp = ({ isOpen, onClose }) => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                // onBlur={handleBlur}
-                // required
+                onBlur={handleBlur}
+                required
                 className="field"
               />
-             {/* {errors.name && <div className="error">{errors.name}</div>} */}
+              {errors.name && <div className="error">{errors.name}</div>}
             </div>
             <div className="input-container">
               <FaUser className="left-icon" />
@@ -180,7 +176,7 @@ const SignUp = ({ isOpen, onClose }) => {
               </div>
               {errors.password && <div className="password-error">{errors.password}</div>}
             </div>
-            <div className="password-container"> {/* Adjusted to be a password-container */}
+            <div className="password-container">
               <div className="input-container">
                 <FaLock className="left-icon" />
                 <input
@@ -195,12 +191,9 @@ const SignUp = ({ isOpen, onClose }) => {
                 {confirmPasswordVisible ? (
                   <FaEye className="right-icon" onClick={toggleConfirmPasswordVisibility} />
                 ) : (
-                  <FaEyeSlash  className="right-icon" onClick={toggleConfirmPasswordVisibility} />
+                  <FaEyeSlash className="right-icon" onClick={toggleConfirmPasswordVisibility} />
                 )}
               </div>
-              {/* {formData.confirmPassword !== '' && formData.confirmPassword !== formData.password && (
-                <div className="error">Passwords do not match</div>
-              )} */}
               {errors.confirmPassword && <div className="password-error">{errors.confirmPassword}</div>}
             </div>
             {success && <div className="success">{success}</div>}

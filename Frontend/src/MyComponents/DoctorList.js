@@ -4,8 +4,8 @@ import NavBar from './Navbar';
 import './Styling/DoctorList.css';
 import Footer from './footer';
 
-const spaceId = 'yorSpaceID';
-const accessToken = 'YOurTokenKEy';
+const spaceId = 'aqxvxbaxg42i';
+const accessToken = 'thagZQi0iG4XD1IKrCvF9tzUi96042JHoG1ohhBEBCE';
 
 async function getDoctors() {
   const res = await fetch(`https://cdn.contentful.com/spaces/${spaceId}/entries?access_token=${accessToken}&content_type=doctors`);
@@ -94,7 +94,7 @@ const DoctorList = () => {
             {filteredDoctors.map((doctor) => {
               const imageId = doctor.fields.image && doctor.fields.image.sys && doctor.fields.image.sys.id;
               const imageUrl = imageId && assets[imageId];
-              console.log('Doctor:', doctor.fields.name, 'Image ID:', imageId, 'Image URL:', imageUrl);
+              const doctorId = doctor.fields.id;
 
               return (
                 <div key={doctor.sys.id} className="doctor-card">
@@ -106,7 +106,7 @@ const DoctorList = () => {
                   <h3>{doctor.fields.name}</h3>
                   <p>{doctor.fields.specialty}</p>
                   <Link
-                    to={`/appoint/${doctor.sys.id}?name=${encodeURIComponent(doctor.fields.name)}&specialty=${encodeURIComponent(doctor.fields.specialty)}`}
+                    to={`/appoint/${doctorId}?name=${encodeURIComponent(doctor.fields.name)}&specialty=${encodeURIComponent(doctor.fields.specialty)}`}
                     className="appoint-button"
                   >
                     Appoint Me

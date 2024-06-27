@@ -184,6 +184,276 @@
     border-radius: 0.5rem;
 }
 
+/* Overlay background for modal */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* black transparent */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Modal styles */
+.confirmation-modal,
+.order-confirmation {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    z-index: 1001;
+    /* Ensure it's above the overlay */
+}
+
+.confirmation-modal h2,
+.order-confirmation h2 {
+    margin-bottom: 20px;
+}
+
+.confirmation-modal button,
+.order-confirmation button {
+    background-color: #4caf50;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s;
+}
+
+.confirmation-modal button:hover,
+.order-confirmation button:hover {
+    background-color: #45a049;
+}
+
+/* Modal positioning and appearance */
+.confirmation-modal {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    z-index: 1001;
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cart-item-image {
+        margin-bottom: 10px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .customer-form button {
+        grid-column: span 1;
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.confirmation-modal,
+.order-confirmation {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+.confirmation-modal h2,
+.order-confirmation h2 {
+    margin-bottom: 20px;
+}
+
+.confirmation-modal button,
+.order-confirmation button {
+    background-color: #4caf50;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s;
+}
+
+.confirmation-modal button:hover,
+.order-confirmation button:hover {
+    background-color: #45a049;
+}
+
+.confirmation-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    z-index: 1001;
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Overlay background for modal */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* black transparent */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Modal styles */
+.confirmation-modal,
+.order-confirmation {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    z-index: 1001;
+    /* Ensure it's above the overlay */
+}
+
+.confirmation-modal h2,
+.order-confirmation h2 {
+    margin-bottom: 20px;
+}
+
+.confirmation-modal button,
+.order-confirmation button {
+    background-color: #4caf50;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s;
+}
+
+.confirmation-modal button:hover,
+.order-confirmation button:hover {
+    background-color: #45a049;
+}
+
+/* Modal positioning and appearance */
+.confirmation-modal {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    z-index: 1001;
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cart-item-image {
+        margin-bottom: 10px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .customer-form button {
+        grid-column: span 1;
+    }
+}
+
+
 /* Responsive design */
 @media (max-width: 768px) {
     .cart-item {

@@ -6,17 +6,8 @@
 
 .main-content {
   flex: 1;
-  padding: 1rem;
+  padding-bottom: 3rem;
 }
-
-.header,
-.footer {
-  background-color: #6882e9;
-  color: white;
-  text-align: center;
-  padding: 1rem 0;
-}
-
 
 
 .about-container {
@@ -38,7 +29,7 @@ h1 {
   text-align: center;
   font-size: 55px;
   margin-bottom: 30px;
-  margin-top: 90px;
+  margin-top: 45px;
 
 }
 
@@ -114,8 +105,6 @@ ul li {
   }
 }
 
-
-/* Existing styles... */
 
 @media (max-width: 768px) {
 

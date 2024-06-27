@@ -13,6 +13,7 @@ const AppointmentForm = () => {
     time: '',
   });
   const [isBooked, setIsBooked] = useState(false);
+  const [appointmentId, setAppointmentId] = useState(null);
 
   const query = new URLSearchParams(location.search);
   const doctorName = query.get('name');
@@ -25,34 +26,41 @@ const AppointmentForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const parsedDoctorId = parseInt(doctorId, 10);
+
+      if (isNaN(parsedDoctorId)) {
+        throw new Error('Invalid doctor ID');
+      }
+
       const response = await fetch('http://localhost:3001/appointments/book', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          doctorId,
+          doctorId: parsedDoctorId,
           doctorName,
           doctorSpecialty,
           ...formData,
         }),
       });
 
-      if (response.ok) {
-        const result = await response.json();
-        alert(`Appointment booked successfully! Appointment ID: ${result.appointmentId}`);
-        setIsBooked(true);
-      } else {
-        alert('Error booking appointment. Please try again.');
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to book appointment');
       }
+
+      const result = await response.json();
+      setAppointmentId(result.appointmentId);
+      setIsBooked(true);
     } catch (error) {
       console.error('Error:', error);
-      alert('Error booking appointment. Please try again.');
+      alert(`Error booking appointment: ${error.message}`);
     }
   };
 
   const handleReturnToDoctors = () => {
-    navigate('/doctorappointment'); // Adjust this path if your doctor list page has a different route
+    navigate('/doctorappointment');
   };
 
   if (isBooked) {
@@ -61,6 +69,7 @@ const AppointmentForm = () => {
         <div className="appointment-booked-message">
           <h2>Appointment Booked</h2>
           <p>Your appointment with {doctorName} has been successfully booked.</p>
+          <p>Appointment ID: {appointmentId}</p>
           <p>Thank you for using our service!</p>
           <button onClick={handleReturnToDoctors} className="return-button">
             Book Another Appointment

@@ -25,7 +25,7 @@ const MainHome = () => {
 
   return (
     <div className="main-home">
-      <NavBar/>
+      <NavBar />
       <section className="section">
         <div className="content">
           <h1>Making Expert Healthcare For All</h1>
@@ -55,10 +55,10 @@ const MainHome = () => {
       <section className="contact-section">
         <h2>Contact Us</h2>
         <p>Have any questions? Reach out to us anytime.</p>
-        <button className="contact-button"><Link style={{ textDecoration: 'none',outline: 'none',color: 'white' }} to="/contact">Contact Us</Link></button>
+        <button className="contact-button"><Link style={{ textDecoration: 'none', outline: 'none', color: 'white' }} to="/contact">Contact Us</Link></button>
       </section>
 
-    
+
       <Footer />
       {showLoginModal && <Login isOpen={showLoginModal} onClose={handleModalClose} onSignUpClick={handleSignUpClick} />}
       {showSignUpModal && <SignUp isOpen={showSignUpModal} onClose={handleModalClose} />}

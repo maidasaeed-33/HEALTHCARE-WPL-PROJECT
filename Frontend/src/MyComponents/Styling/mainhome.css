@@ -1,10 +1,7 @@
-/* Styling/mainhome.css */
-
-.main-home{
-margin-top: 80px;
+.main-home {
+  margin-top: 90px;
 }
 
-/* Hero Section */
 .section {
   display: flex;
   align-items: center;
@@ -24,7 +21,7 @@ margin-top: 80px;
 .content {
   max-width: 600px;
   padding: 0 20px;
-  z-index: 1; 
+  z-index: 1;
 }
 
 .content h1 {
@@ -56,7 +53,6 @@ margin-top: 80px;
   color: white;
 }
 
-/* Services Section */
 .services-section {
   padding: 4rem 2rem;
   text-align: center;
@@ -75,7 +71,7 @@ margin-top: 80px;
   padding: 1.5rem;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 100%;
+  width: calc(33.333% - 2rem);
   max-width: 300px;
   text-align: center;
   transition: transform 0.3s;
@@ -102,7 +98,6 @@ margin-top: 80px;
   margin-top: 30px;
 }
 
-/* Contact Section */
 .contact-section {
   background-color: rgba(0, 56, 140, 0.1);
   padding: 4rem 2rem;
@@ -138,7 +133,6 @@ margin-top: 80px;
   transform: translateY(-10px);
 }
 
-/* Footer */
 .footer {
   background-color: #6882e9;
   padding: 2rem 0;
@@ -148,7 +142,6 @@ margin-top: 80px;
   font-size: 18px;
 }
 
-/* Media Queries */
 @media (max-width: 1200px) {
   .content h1 {
     font-size: 3rem;
@@ -157,11 +150,15 @@ margin-top: 80px;
   .content p {
     font-size: 1.25rem;
   }
+
+  .service-card {
+    width: calc(50% - 2rem);
+  }
 }
 
 @media (max-width: 768px) {
   .section {
-    height: auto; /* Adjust height to fit content */
+    height: auto;
     padding: 60px 10px;
   }
 
@@ -177,11 +174,16 @@ margin-top: 80px;
     font-size: 0.875rem;
     padding: 8px 16px;
   }
+
+  .service-card {
+    width: calc(100% - 2rem);
+    max-width: 400px;
+  }
 }
 
 @media (max-width: 480px) {
   .section {
-    height: auto; /* Adjust height to fit content */
+    height: auto;
     padding: 60px 10px;
   }
 
@@ -204,8 +206,11 @@ margin-top: 80px;
     color: white;
   }
 
-  .services {
-    flex-direction: column;
+  .service-card {
+    margin: 1rem 0;
+  }
+
+  .service-image {
+    height: 150px;
   }
 }
-

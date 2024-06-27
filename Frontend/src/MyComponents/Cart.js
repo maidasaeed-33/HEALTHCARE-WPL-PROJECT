@@ -22,6 +22,7 @@ const Cart = () => {
 
     const [formErrors, setFormErrors] = useState({});
     const [showConfirmation, setShowConfirmation] = useState(false);
+    const [showThankYou, setShowThankYou] = useState(false);
 
     const handleChange = (e) => {
         setCustomerDetails({
@@ -73,13 +74,24 @@ const Cart = () => {
             });
 
             if (response.ok) {
-                const result = await response.json();
+                let result;
+                const contentType = response.headers.get("content-type");
+                if (contentType && contentType.indexOf("application/json") !== -1) {
+                    result = await response.json();
+                } else {
+                    result = await response.text();
+                }
                 dispatch(clearCart());
-                alert('Order placed successfully!');
-                navigate('/');
+                setShowThankYou(true);
             } else {
-                const errorData = await response.json();
-                alert(`Error placing order: ${errorData.message || 'Please try again.'}`);
+                let errorMessage;
+                try {
+                    const errorData = await response.json();
+                    errorMessage = errorData.message || 'Please try again.';
+                } catch {
+                    errorMessage = await response.text() || 'Please try again.';
+                }
+                alert(`Error placing order: ${errorMessage}`);
             }
         } catch (error) {
             console.error('Error placing order:', error);
@@ -102,6 +114,11 @@ const Cart = () => {
 
     const getTotalPrice = () => {
         return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+    };
+
+    const handleCloseThankYou = () => {
+        setShowThankYou(false);
+        navigate('/');
     };
 
     return (
@@ -178,13 +195,22 @@ const Cart = () => {
                 </div>
                 <Footer />
             </div>
-
             {showConfirmation && (
-                <div className="confirmation-modal">
-                    <h2>Confirm Your Order</h2>
-                    <p>Total: Rs {getTotalPrice()}</p>
-                    <button onClick={confirmOrder}>Confirm</button>
-                    <button onClick={() => setShowConfirmation(false)}>Cancel</button>
+                <div className="modal-backdrop">
+                    <div className="confirmation-modal">
+                        <h2>Confirm Order</h2>
+                        <p>Are you sure you want to place this order?</p>
+                        <button onClick={confirmOrder}>Yes</button>
+                        <button onClick={() => setShowConfirmation(false)}>No</button>
+                    </div>
+                </div>
+            )}
+            {showThankYou && (
+                <div className="overlay">
+                    <div className="order-confirmation">
+                        <h2>Thank you for your order!</h2>
+                        <button onClick={handleCloseThankYou}>Close</button>
+                    </div>
                 </div>
             )}
         </>
