@@ -4,8 +4,8 @@ import NavBar from './Navbar';
 import './Styling/DoctorList.css';
 import Footer from './footer';
 
-const spaceId = 'aqxvxbaxg42i';
-const accessToken = 'thagZQi0iG4XD1IKrCvF9tzUi96042JHoG1ohhBEBCE';
+const spaceId = 'yorSpaceID';
+const accessToken = 'YOurTokenKEy';
 
 async function getDoctors() {
   const res = await fetch(`https://cdn.contentful.com/spaces/${spaceId}/entries?access_token=${accessToken}&content_type=doctors`);
