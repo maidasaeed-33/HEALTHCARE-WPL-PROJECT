@@ -1,4 +1,4 @@
-.modal {
+.signup-modal {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,160 +11,163 @@
   z-index: 9999;
 }
 
-.container {
-  width: 400px;
-  /* background-color: white; */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 2rem;
-  border-radius: 10px;
+.signup-container {
+  width: 90%;
+  max-width: 320px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  padding: 2.5rem;
+  border-radius: 12px;
   position: relative;
 }
 
-.form {
+.signup-form {
   display: flex;
   flex-direction: column;
 }
 
-.input-container {
+.signup-input-container {
   width: 100%;
   position: relative;
-  margin-bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-}
-
-.field {
-  width: 100%;
-  padding: 0.75rem 2.5rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  font-size: 1rem;
-}
-
-.left-icon, .right-icon {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.2rem;
-  color: #888;
-  z-index: 1;
-}
-
-.left-icon {
-  left: 0.75rem;
-}
-
-.right-icon {
-  right: 0.75rem;
-  cursor: pointer;
-}
-.error {
-  color: red;
-  font-size: 0.85rem;
-  margin-top: 0.25rem;
-  width: 100%;
-  text-align: left;
-  padding-left: 2.5rem;
-  position: absolute;
-  top: calc(100% + 0.25rem); 
-  left: 0;
-  
-}
-.close-icon {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  font-size: 1.5rem;
-  color: #333;
-  cursor: pointer;
-}
-
-.success {
-  color: green;
-  font-size: 1rem;
   margin-bottom: 1rem;
-  text-align: center;
-}
-
-.form-btn {
-  width: 100%;
-  margin-top: 1rem;
-}
-
-.form-btn button {
-  width: 100%;
-  padding: 0.75rem;
-  color: white;
-  background-color: rgb(52, 52, 238);
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
-  font-weight: bold;
-  border-radius: 8px;
-}
-
-.form-btn button:hover {
-  background-color: rgb(69, 69, 245);
-}
-
-.password-container {
-  width: 100%;
-  position: relative;
-  margin-bottom: 0.5rem; 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-.password-error {
-  color: red;
-  font-size: 0.85rem;
+
+.signup-field-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.signup-field {
+  width: 100%;
+  padding: 0.6rem 2rem;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  font-size: 0.9rem;
+  transition: border-color 0.3s ease;
+}
+
+.signup-field:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
+.signup-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: #888;
+  z-index: 1;
+}
+
+.signup-left-icon {
+  left: 0.5rem;
+}
+
+.signup-right-icon {
+  right: 0.5rem;
+  cursor: pointer;
+}
+
+.signup-error,
+.signup-password-error {
+  color: #e74c3c;
+  font-size: 0.75rem;
   margin-top: 0.25rem;
   width: 100%;
   text-align: left;
-  padding-left: 2.5rem;
 }
 
-/* 
-.name-error, .general-error {
-  padding-left: 2.5rem;
-} */
+.signup-close-icon {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  font-size: 1.2rem;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
 
-@media (max-width: 600px) {
-  .container {
-    width: 100%;
-    padding: 1rem;
+.signup-close-icon:hover {
+  color: #e74c3c;
+}
+
+.signup-success {
+  color: #2ecc71;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  padding: 0.4rem;
+  background-color: #e8f8f5;
+  border-radius: 6px;
+}
+
+.signup-btn-container {
+  width: 100%;
+  margin-top: 0.75rem;
+}
+
+.signup-btn {
+  width: 100%;
+  padding: 0.6rem;
+  color: white;
+  background-color: #4a90e2;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.signup-btn:hover {
+  background-color: #357ae8;
+}
+
+.signup-password-container {
+  width: 100%;
+  position: relative;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+@media (max-width: 480px) {
+  .signup-container {
+    padding: 2rem;
   }
 
-  .field {
-    padding: 0.75rem 2rem;
+  .signup-field {
+    padding: 0.5rem 1.8rem;
+    font-size: 0.85rem;
+  }
+
+  .signup-icon {
     font-size: 0.9rem;
   }
 
-  .left-icon, .right-icon {
-    font-size: 1rem;
+  .signup-error,
+  .signup-password-error {
+    font-size: 0.7rem;
   }
 
-  .error, .password-error {
-    font-size: 0.75rem;
-    padding-left: 2rem;
+  .signup-close-icon {
+    font-size: 1.1rem;
+    top: 0.6rem;
+    right: 0.6rem;
   }
 
-  .close-icon {
-    font-size: 1rem;
-    position: absolute;
-    top: 0.1rem; 
-    right: 0.29rem; 
-    cursor: pointer;
-    z-index: 1000; 
+  .signup-btn {
+    padding: 0.6rem;
+    font-size: 0.85rem;
   }
 
-  .form-btn button {
-    padding: 0.75rem;
-    font-size: 0.9rem;
-  }
-
-  .success {
-    font-size: 0.9rem;
+  .signup-success {
+    font-size: 0.85rem;
   }
 }

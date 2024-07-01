@@ -23,14 +23,27 @@ const SignUp = ({ isOpen, onClose }) => {
     try {
       const response = await axios.post('http://localhost:3001/auth/validate', formData);
       if (response.data.message === 'Form data is valid') {
-        const signupResponse = await axios.post('http://localhost:3001/auth/signup', formData);
-        console.log(signupResponse.data);
-        setErrors({});
-        setSuccess('Signed up successfully');
-        setTimeout(() => {
-          onClose();
-          window.location.reload();
-        }, 2000);
+        try {
+          const signupResponse = await axios.post('http://localhost:3001/auth/signup', formData);
+          console.log(signupResponse.data);
+          setErrors({});
+          setSuccess('Signed up successfully');
+          setTimeout(() => {
+            onClose();
+            window.location.reload();
+          }, 2000);
+        } catch (signupError) {
+          if (signupError.response && signupError.response.data) {
+            if (signupError.response.data.email) {
+              setErrors(prevErrors => ({ ...prevErrors, email: signupError.response.data.email }));
+            } else {
+              setErrors(signupError.response.data);
+            }
+          } else {
+            console.error('Error during signup:', signupError);
+            setErrors({ general: 'An unexpected error occurred during signup.' });
+          }
+        }
       } else {
         setErrors(response.data);
       }
@@ -38,8 +51,8 @@ const SignUp = ({ isOpen, onClose }) => {
       if (error.response && error.response.data) {
         setErrors(error.response.data);
       } else {
-        console.error('Error during signup:', error);
-        setErrors({ general: 'An unexpected error occurred during signup.' });
+        console.error('Error during validation:', error);
+        setErrors({ general: 'An unexpected error occurred during validation.' });
       }
       setSuccess(null);
     }
@@ -49,45 +62,42 @@ const SignUp = ({ isOpen, onClose }) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
 
-    if (name === 'password') {
-      const newErrors = { ...errors };
-      delete newErrors.password;
-      setErrors(newErrors);
-    }
+    setErrors(prevErrors => {
+      const newErrors = { ...prevErrors };
+      delete newErrors[name];
+      return newErrors;
+    });
 
     if (name === 'confirmPassword') {
       if (value !== formData.password) {
-        setErrors({ ...errors, confirmPassword: 'Passwords do not match' });
-      } else {
-        const newErrors = { ...errors };
-        delete newErrors.confirmPassword;
-        setErrors(newErrors);
+        setErrors(prevErrors => ({ ...prevErrors, confirmPassword: 'Passwords do not match' }));
       }
     }
   };
 
   const handleBlur = async (event) => {
     const { name, value } = event.target;
+    if (!value) return;
+
     const formDataCopy = { ...formData, [name]: value };
 
     try {
       const response = await axios.post('http://localhost:3001/auth/validate', formDataCopy);
       if (response.data.message === 'Form data is valid') {
-        setErrors({});
+        setErrors(prevErrors => {
+          const newErrors = { ...prevErrors };
+          delete newErrors[name];
+          return newErrors;
+        });
       } else {
-        setErrors(response.data);
+        setErrors(prevErrors => ({ ...prevErrors, ...response.data }));
       }
     } catch (error) {
       if (error.response && error.response.data) {
-        const serverErrors = error.response.data;
-        const newErrors = {
-          ...errors,
-          ...serverErrors,
-        };
-        setErrors(newErrors);
+        setErrors(prevErrors => ({ ...prevErrors, ...error.response.data }));
       } else {
         console.error('Error during validation:', error);
-        setErrors({ general: 'An unexpected error occurred during validation.' });
+        setErrors(prevErrors => ({ ...prevErrors, general: 'An unexpected error occurred during validation.' }));
       }
     }
   };
@@ -105,101 +115,107 @@ const SignUp = ({ isOpen, onClose }) => {
       isOpen={isOpen}
       onRequestClose={onClose}
       ariaHideApp={false}
-      className="modal"
-      overlayClassName="modal-overlay"
+      className="signup-modal"
+      overlayClassName="signup-modal-overlay"
     >
-      <div className="container">
-        <div className="form">
-          <FaTimes className="close-icon" onClick={onClose} />
+      <div className="signup-container">
+        <div className="signup-form">
+          <FaTimes className="signup-close-icon" onClick={onClose} />
           <form onSubmit={handleSubmit}>
-            <div className="input-container">
-              <FaUser className="left-icon" />
-              <input
-                type="text"
-                placeholder="Name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                required
-                className="field"
-              />
-              {errors.name && <div className="error">{errors.name}</div>}
+            <div className="signup-input-container">
+              <div className="signup-field-wrapper">
+                <FaUser className="signup-icon signup-left-icon" />
+                <input
+                  type="text"
+                  placeholder="Name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  required
+                  className="signup-field"
+                />
+              </div>
+              {errors.name && <div className="signup-error">{errors.name}</div>}
             </div>
-            <div className="input-container">
-              <FaUser className="left-icon" />
-              <input
-                type="text"
-                placeholder="Username"
-                name="username"
-                value={formData.username}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                required
-                className="field"
-              />
-              {errors.username && <div className="error">{errors.username}</div>}
+            <div className="signup-input-container">
+              <div className="signup-field-wrapper">
+                <FaUser className="signup-icon signup-left-icon" />
+                <input
+                  type="text"
+                  placeholder="Username"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  required
+                  className="signup-field"
+                />
+              </div>
+              {errors.username && <div className="signup-error">{errors.username}</div>}
             </div>
-            {errors.general && <div className="error general-error">{errors.general}</div>}
-
-            <div className="input-container">
-              <FaEnvelope className="left-icon" />
-              <input
-                type="email"
-                placeholder="Email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                required
-                className="field"
-              />
-              {errors.email && <div className="error">{errors.email}</div>}
+            <div className="signup-input-container">
+              <div className="signup-field-wrapper">
+                <FaEnvelope className="signup-icon signup-left-icon" />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  required
+                  className="signup-field"
+                />
+              </div>
+              {errors.email && <div className="signup-error">{errors.email}</div>}
             </div>
-            <div className="password-container">
-              <div className="input-container">
-                <FaLock className="left-icon" />
+            <div className="signup-input-container">
+              <div className="signup-field-wrapper">
+                <FaLock className="signup-icon signup-left-icon" />
                 <input
                   type={passwordVisible ? "text" : "password"}
                   placeholder="Password"
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   required
-                  className="field"
+                  className="signup-field"
                 />
                 {passwordVisible ? (
-                  <FaEye className="right-icon" onClick={togglePasswordVisibility} />
+                  <FaEye className="signup-icon signup-right-icon" onClick={togglePasswordVisibility} />
                 ) : (
-                  <FaEyeSlash className="right-icon" onClick={togglePasswordVisibility} />
+                  <FaEyeSlash className="signup-icon signup-right-icon" onClick={togglePasswordVisibility} />
                 )}
               </div>
-              {errors.password && <div className="password-error">{errors.password}</div>}
+              {errors.password && <div className="signup-error">{errors.password}</div>}
             </div>
-            <div className="password-container">
-              <div className="input-container">
-                <FaLock className="left-icon" />
+            <div className="signup-input-container">
+              <div className="signup-field-wrapper">
+                <FaLock className="signup-icon signup-left-icon" />
                 <input
                   type={confirmPasswordVisible ? "text" : "password"}
                   placeholder="Confirm Password"
                   name="confirmPassword"
                   value={formData.confirmPassword}
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   required
-                  className="field"
+                  className="signup-field"
                 />
                 {confirmPasswordVisible ? (
-                  <FaEye className="right-icon" onClick={toggleConfirmPasswordVisibility} />
+                  <FaEye className="signup-icon signup-right-icon" onClick={toggleConfirmPasswordVisibility} />
                 ) : (
-                  <FaEyeSlash className="right-icon" onClick={toggleConfirmPasswordVisibility} />
+                  <FaEyeSlash className="signup-icon signup-right-icon" onClick={toggleConfirmPasswordVisibility} />
                 )}
               </div>
-              {errors.confirmPassword && <div className="password-error">{errors.confirmPassword}</div>}
+              {errors.confirmPassword && <div className="signup-error">{errors.confirmPassword}</div>}
             </div>
-            {success && <div className="success">{success}</div>}
-            {errors.general && <div className="error">{errors.general}</div>}
-            <div className="form-btn">
-              <button type="submit">Sign Up</button>
+            {success && <div className="signup-success">{success}</div>}
+            {errors.general && <div className="signup-error">{errors.general}</div>}
+            <div className="signup-btn-container">
+              <button type="submit" className="signup-btn">Sign Up</button>
             </div>
           </form>
         </div>

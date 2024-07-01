@@ -88,43 +88,58 @@ const AppointmentForm = () => {
           <div className="doctor-specialty">Specialty: <span>{doctorSpecialty}</span></div>
         </div>
 
-        <label>Name</label>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
+        <div className="form-group">
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-        <label>Date</label>
-        <input
-          type="date"
-          name="date"
-          value={formData.date}
-          onChange={handleChange}
-          required
-        />
+        <div className="form-group">
+          <label htmlFor="date">Date</label>
+          <input
+            type="date"
+            id="date"
+            name="date"
+            value={formData.date}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-        <label>Time</label>
-        <input
-          type="time"
-          name="time"
-          value={formData.time}
-          onChange={handleChange}
-          required
-        />
+        <div className="form-group">
+          <label htmlFor="time">Time</label>
+          <input
+            type="time"
+            id="time"
+            name="time"
+            value={formData.time}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-        <button type="submit">Submit</button>
+        <div className="button-group">
+          <button type="submit" className="submit-button">Book Appointment</button>
+          <button type="button" onClick={handleReturnToDoctors} className="cancel-button">Cancel</button>
+        </div>
       </form>
     </div>
   );

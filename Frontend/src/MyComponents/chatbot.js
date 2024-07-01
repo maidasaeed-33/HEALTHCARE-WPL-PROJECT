@@ -64,7 +64,7 @@ const Chatbot = () => {
                 clearInterval(interval);
                 scrollChatToBottom();
             }
-        }, 6);
+        }, 5);
     };
 
     const handleInputChange = (e) => {
@@ -89,35 +89,38 @@ const Chatbot = () => {
 
     return (
         <>
-            <div className='chatbot_body'>
-                <NavBar />
-                <div className="chatbot-container">
-                    <div className="chatbot-messages" ref={chatbotMessagesRef}>
-                        {messages.map((msg, index) => (
-                            <div key={index} className={`message ${msg.sender}`}>
-                                {msg.text}
-                            </div>
-                        ))}
-                        {isTyping && (
-                            <div className="typing-indicator">
-                                <div className="typing-dots">
-                                    <span></span><span></span><span></span>
+            <div className='chatbotbody'>
+                <div className='chatbot_body'>
+                    <NavBar />
+                    <div className="chatbot-container">
+                        <div className="chatbot-messages" ref={chatbotMessagesRef}>
+                            {messages.map((msg, index) => (
+                                <div key={index} className={`message ${msg.sender}`}>
+                                    {msg.text}
                                 </div>
-                            </div>
-                        )}
-                    </div>
-                    <div className="chatbot-input">
-                        <input
-                            type="text"
-                            value={input}
-                            onChange={handleInputChange}
-                            onKeyPress={handleKeyPress}
-                            placeholder="Type your message..."
-                        />
-                        <button onClick={sendMessage}>Send</button>
+                            ))}
+                            {isTyping && (
+                                <div className="typing-indicator">
+                                    <div className="typing-dots">
+                                        <span></span><span></span><span></span>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                        <div className="chatbot-input">
+                            <input
+                                type="text"
+                                value={input}
+                                onChange={handleInputChange}
+                                onKeyPress={handleKeyPress}
+                                placeholder="Type your message..."
+                            />
+                            <button onClick={sendMessage}>Send</button>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </>
     );
 };
