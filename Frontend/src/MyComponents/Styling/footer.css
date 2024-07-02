@@ -1,12 +1,8 @@
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; 
+  min-height: 100vh;
+
 }
 
 #root {
@@ -16,24 +12,30 @@ body {
 }
 
 .footer {
-  flex-shrink: 0; 
+  flex-shrink: 0;
   width: 100%;
   background-color: #3454D1;
   color: #fff;
   text-align: center;
-  padding: 1rem;
-  position: relative; 
-  box-sizing: border-box; 
+  height: 40px;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin-top: 2rem;
+  position: relative;
+  box-sizing: border-box;
 }
 
 .page-container {
-  flex: 1; 
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
 
 .content-wrap {
-  flex: 1; 
+  flex: 1;
 }
 
 @media (max-width: 768px) {

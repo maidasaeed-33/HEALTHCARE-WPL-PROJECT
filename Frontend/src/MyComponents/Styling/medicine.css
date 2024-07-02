@@ -1,8 +1,8 @@
-.page-container {
+.pagemedicine-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  height: 100vh;
+  margin-top: 4.5rem;
 }
 
 .content-wrap {
@@ -20,14 +20,22 @@ h1 {
   font-size: 2rem;
 }
 
-label {
+.medicine-label {
   font-size: 1.2rem;
   margin-right: 10px;
+  margin-left: 15px;
 }
 
-select {
+
+select,
+.search-input {
   padding: 5px;
   font-size: 1rem;
+  margin-bottom: 15px;
+  max-width: 300px;
+  width: 100%;
+  height: 40px;
+
 }
 
 .medicine-cards {
@@ -129,7 +137,7 @@ select {
   margin-bottom: 20px;
 }
 
-.selected-medicine-content label {
+.selected-medicine-content .medicine-label {
   font-size: 1.2rem;
   margin-bottom: 10px;
 }
@@ -169,17 +177,13 @@ select {
   cursor: pointer;
 }
 
-.search-label {
+.search-.medicine-label {
   font-size: 1.2rem;
   margin-left: 20px;
   margin-right: 10px;
 }
 
-.search-input {
-  padding: 5px;
-  font-size: 1rem;
-  margin-bottom: 20px;
-}
+
 
 .medicine-image,
 .selected-medicine-image {
@@ -285,16 +289,16 @@ select {
     padding: 25px;
   }
 
-  .search-label,
-  .search-input,
-  select {
-    display: block;
-    width: 100%;
-    margin: 10px 0;
+  .medicine-label,
+  .search-.medicine-label {
     font-size: 1rem;
+    display: block;
+    margin-bottom: 5px;
+    margin-left: 0;
+    margin-right: 0;
   }
 
-  .search-label {
+  .search-.medicine-label {
     margin-left: 0;
     margin-right: 0;
   }
@@ -314,7 +318,7 @@ select {
 @media (min-width: 769px) {
 
 
-  .search-label {
+  .search-.medicine-label {
     font-size: 1.2rem;
     margin-left: 20px;
     margin-right: 10px;

@@ -1,13 +1,14 @@
-/* Reset CSS */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
-  font-family: Arial, sans-serif;
+  margin: 0;
+  font-family: 'Roboto', Arial, sans-serif;
 }
 
 .contact-page {
@@ -16,7 +17,7 @@ html, body {
   min-height: 100vh;
 }
 
-.contact-info h2{
+.contact-info h2 {
   color: white;
 }
 
@@ -60,7 +61,7 @@ html, body {
   color: #fff;
 }
 
-.contact-info h2{
+.contact-info h2 {
   color: white;
   font-size: 45px;
 }
@@ -131,6 +132,7 @@ html, body {
   margin-top: auto;
   font-size: 18px;
 }
+
 .input-with-icon {
   position: relative;
 }
@@ -145,7 +147,8 @@ html, body {
 
 .input-with-icon input,
 .input-with-icon textarea {
-  padding-left: 30px !important; /* Adjusted padding */
+  padding-left: 30px !important;
+  /* Adjusted padding */
 }
 
 

@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  margin-top: 2rem;
 }
 
 .main-content {
@@ -25,16 +26,12 @@
   flex-wrap: wrap;
 }
 
-h1 {
+.abouth1 {
   text-align: center;
-  font-size: 55px;
-  margin-bottom: 30px;
-  margin-top: 70px;
-
 }
 
 .heading {
-  font-size: 48px;
+  font-size: 40px;
   font-weight: bold;
   margin-bottom: 15px;
 }
@@ -111,18 +108,14 @@ ul li {
   .about-container {
     flex-direction: column;
     align-items: center;
-    /* Align items horizontally in the center */
     justify-content: center;
-    /* Align items vertically in the center */
     text-align: center;
-    /* Center align text */
   }
 
   .left {
     order: 1;
     width: 100%;
     text-align: center;
-    /* padding-right: 58px; */
   }
 
   .right {
@@ -140,14 +133,4 @@ ul li {
   .bullet {
     text-align: left;
   }
-}
-
-.footer {
-  background-color: #6882e9;
-  padding: 2rem 0;
-  text-align: center;
-  color: #fff;
-  margin-top: 2rem;
-  font-size: 18px;
-  bottom: 0;
 }

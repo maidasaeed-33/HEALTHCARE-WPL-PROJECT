@@ -89,12 +89,12 @@ const MedicineDelivery = () => {
   return (
     <>
       <NavBar />
-      <div className="page-container">
+      <div className="pagemedicine-container">
         <div className="content-wrap">
           <div className="medicine-delivery">
-            <h1>Medicine Delivery</h1>
+            <h1 className='h1medicine'>Medicine Delivery</h1>
 
-            <label htmlFor="category">Select Category: </label>
+            <label className='medicine-label' htmlFor="category">Select Category: </label>
             <select id="category" onChange={handleCategoryChange} value={selectedCategory}>
               <option value="">All</option>
               <option value="eye, ear, nose">Eye, Ear, Nose</option>
@@ -104,7 +104,7 @@ const MedicineDelivery = () => {
               <option value="others">Others</option>
             </select>
 
-            <label htmlFor="search" className="search-label">Search Medicine: </label>
+            <label htmlFor="search" className="medicine-label" >Search Medicine: </label>
             <input
               type="text"
               id="search"
@@ -156,14 +156,15 @@ const MedicineDelivery = () => {
             )}
           </div>
         </div>
-        <Footer />
-      </div>
+      </div >
 
       {showNotification && (
         <div className="notification">
           <p>{notificationMessage}</p>
         </div>
-      )}
+      )
+      }
+      <Footer />
     </>
   );
 };

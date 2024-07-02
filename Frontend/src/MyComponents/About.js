@@ -8,10 +8,10 @@ import Footer from './footer';
 function About() {
   return (
     <>
+      <Nav />
       <div className="page-container">
-        <Nav />
         <main className="main-content">
-          <h1>About Us</h1>
+          <h1 className='abouth1'>About Us</h1>
           <div className="about-container">
             <div className="left">
               <div className="heading">We provide high-quality healthcare services</div>

@@ -3,7 +3,6 @@ import axios from 'axios';
 import Modal from 'react-modal';
 import { FaUser, FaLock, FaEye, FaEyeSlash, FaTimes } from "react-icons/fa";
 import './Styling/login.css';
-import icon from './Assets/permission.png';
 
 const Login = ({ isOpen, onClose, onSignUpClick }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);

@@ -16,8 +16,8 @@ const NavBar = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
 
-  const cartItems = useSelector((state) => state.cart.items); // Get cart items from Redux store
-  const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0); // Calculate total number of items
+  const cartItems = useSelector((state) => state.cart.items);
+  const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);

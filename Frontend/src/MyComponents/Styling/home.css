@@ -1,11 +1,9 @@
-
-/* Hero Section */
 .hero-section {
   display: flex;
   align-items: center;
   justify-content: center;
-background: url('https://i.pinimg.com/564x/41/63/b0/4163b0bed0eeb953054027d362aa759d.jpg') no-repeat center center/cover;
-width: 100vw;
+  background: url('https://i.pinimg.com/564x/41/63/b0/4163b0bed0eeb953054027d362aa759d.jpg') no-repeat center center/cover;
+  width: 100vw;
   height: 70vh;
   color: white;
   text-align: center;
@@ -40,7 +38,6 @@ width: 100vw;
   background-color: rgb(52, 52, 238);
 }
 
-/* Services Section */
 .services-section {
   padding: 4rem 2rem;
   text-align: center;
@@ -98,7 +95,6 @@ width: 100vw;
   transform: translateY(-10px);
 }
 
-/* Contact Section */
 .contact-section {
   background-color: rgba(0, 56, 140, 0.1);
   padding: 4rem 2rem;
@@ -130,4 +126,3 @@ width: 100vw;
 .contact-button:hover {
   background-color: rgb(52, 52, 238);
 }
-
