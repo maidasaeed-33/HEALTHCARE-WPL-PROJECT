@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import NavBar from './Navbar';
 import './Styling/chatbot.css';
+import medicalIcon from './Assets/logo2.png';
 
 const Chatbot = () => {
     const [input, setInput] = useState('');
@@ -12,7 +13,8 @@ const Chatbot = () => {
     const sendMessage = async () => {
         if (input.trim() === '') return;
 
-        const userMessage = { sender: 'user', text: input };
+        const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const userMessage = { sender: 'user', text: input, time: currentTime };
         setMessages((prevMessages) => [...prevMessages, userMessage]);
         setInput('');
 
@@ -44,7 +46,8 @@ const Chatbot = () => {
 
     const simulateTyping = (text) => {
         let index = 0;
-        const botMessage = { sender: 'bot', text: '' };
+        const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const botMessage = { sender: 'bot', text: '', time: currentTime };
 
         const interval = setInterval(() => {
             if (index < text.length) {
@@ -87,16 +90,53 @@ const Chatbot = () => {
         scrollChatToBottom();
     }, [messages]);
 
+    const getInitials = (name) => {
+        return name.split(' ').map(word => word[0].toUpperCase()).join('');
+    };
+
+    const stringToColor = (str) => {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            hash = str.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        let color = '#';
+        for (let i = 0; i < 3; i++) {
+            const value = (hash >> (i * 8)) & 0xFF;
+            color += ('00' + value.toString(16)).substr(-2);
+        }
+        return color;
+    };
+
     return (
         <>
             <div className='chatbotbody'>
                 <div className='chatbot_body'>
                     <NavBar />
                     <div className="chatbot-container">
+                        <div className="chatbot-header">
+                            <img src={medicalIcon} alt="Medical Icon" className="medical-icon" />
+                            <h1>Pak+ Medical Chatbot</h1>
+                        </div>
                         <div className="chatbot-messages" ref={chatbotMessagesRef}>
                             {messages.map((msg, index) => (
-                                <div key={index} className={`message ${msg.sender}`}>
-                                    {msg.text}
+                                <div key={index} className={`message-container ${msg.sender}`}>
+                                    <div
+                                        className="avatar"
+                                        style={{ backgroundColor: stringToColor(msg.sender === 'user' ? 'You' : 'Pak+ Chatbot') }}
+                                    >
+                                        {getInitials(msg.sender === 'user' ? 'You' : 'PC')}
+                                    </div>
+                                    <div className="message-content">
+                                        <div className={`message ${msg.sender}`}>
+                                            {msg.text.split('\n').map((line, i) => (
+                                                <React.Fragment key={i}>
+                                                    {line}
+                                                    {i < msg.text.split('\n').length - 1 && <br />}
+                                                </React.Fragment>
+                                            ))}
+                                        </div>
+                                        <div className="message-time">{msg.time}</div>
+                                    </div>
                                 </div>
                             ))}
                             {isTyping && (
@@ -120,7 +160,6 @@ const Chatbot = () => {
                     </div>
                 </div>
             </div>
-
         </>
     );
 };
